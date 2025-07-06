@@ -78,4 +78,4 @@ Ensure you replace the `localhost` with the actual ip address of those component
 Restart Nginx Service to load the changes of the configuration.
 
 ``` 
-systemctl restart nginx 
+systemctl restart nginx
