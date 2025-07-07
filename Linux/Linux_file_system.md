@@ -19,30 +19,30 @@ The Linux file system is a hierarchical structure that organizes files and direc
    * Contains super user/ root user binary executables.
    * Linux commands located under this directory are used typically by system administrator.
    * Examples: init, ifconfig, reboot, fsck, iptables
-   try this
-   ```
-   cd /sbin && ls -lrt
-   ```
+try this
+```
+cd /sbin && ls -lrt
+```
 ## 4. /etc - System configuration Files
    * Contains configuration files required by all programs.
    * This also contains startup and shutdown shell scripts used to start/stop individual programs.
-   * For example : /etc/resolv.conf, /etc/logrotate.conf, /etc/fstab, /etc/passwd, /etc/ssh/   sshd_config
-   try this
-   ```
-   cat /etc/passwd
-   cat /etc/fstab
-   ```
+   * For example : /etc/resolv.conf, /etc/logrotate.conf, /etc/fstab, /etc/passwd, /etc/ssh/ sshd_config
+try this
+ ```
+cat /etc/passwd
+cat /etc/fstab
+```
 ## 5. /dev - device files
    * Contains device files.
    * Treats devices as files: hard disks, terminals, USBs.
    * For example 
-         * /dev/sda1 -> First disk partition
-         * /dev/null -> BitBucket
-         * /dev/random -> Random number generator
-     Explore /dev
-     ```
-     cd /dev && ls -lrt
-     ```
+        1) /dev/sda1 -> First disk partition
+        2) /dev/null -> BitBucket
+        3) /dev/random -> Random number generator
+Explore /dev
+```
+cd /dev && ls -lrt
+```
 ## 6. /proc - process Information
    * Contains information about system process.
    * Mounts at runtime; not stored on disk.
@@ -54,13 +54,13 @@ The Linux file system is a hierarchical structure that organizes files and direc
    * Content of the file that expected to grow can be found under this directory.
    * Logs, spool files, PID files, mail queues, databases files grows overtime.
    * Key subdirs:
-         1) /var/log – Logs
-         2) /var/spool – Print/mail queues
-         3) /var/tmp – Persistent temporary file
-    try this
-    ```
-     tail -f /var/log/syslog
-    ```
+        1) /var/log – Logs
+        2) /var/spool – Print/mail queues
+        3) /var/tmp – Persistent temporary file
+try this
+```
+tail -f /var/log/syslog
+```
 ## 8. /tmp - Temporary Files
    * Directory that contains temporary files created by system and users.
    * Files under this directory are deleted when system is rebooted.
@@ -74,10 +74,10 @@ The Linux file system is a hierarchical structure that organizes files and direc
 ## 10. home - Home directories
    * Home directories for all user to store personal files.
    * For example: /home/ramesh, /home/suresh
-   try this
-   ```
-   ls -la
-   ```
+try this
+```
+ls -la
+```
 ## 11. /root – Superuser’s Home
    * Root user’s personal home (not /home/root) and only accessible by root.
    * Useful during system recovery
@@ -87,10 +87,10 @@ The Linux file system is a hierarchical structure that organizes files and direc
         1) vmlinuz-* – Kernel binary
         2) initrd.img – Initial RAM disk
         3) grub.cfg – Boot menu configuration
-    try this
-    ```
-    ls \boot
-    ```
+try this
+```
+ls \boot
+```
 ## 13. /lib  /lib64 - Shared Libraries
    * Required for binaries in /bin and /sbin
    * Contains kernel modules: /lib/modules/$(uname -r)
