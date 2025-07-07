@@ -26,8 +26,8 @@ cd /sbin && ls -lrt
 ## 4. /etc - System configuration Files
    * Contains configuration files required by all programs.
    * This also contains startup and shutdown shell scripts used to start/stop individual programs.
-   * For example : /etc/resolv.conf, /etc/logrotate.conf, /etc/fstab, /etc/passwd, /etc/ssh/ sshd_config
-try this
+   * For example : /etc/resolv.conf, /etc/logrotate.conf, /etc/fstab, /etc/passwd
+### try this
  ```
 cat /etc/passwd
 cat /etc/fstab
@@ -39,7 +39,7 @@ cat /etc/fstab
         1) /dev/sda1 -> First disk partition
         2) /dev/null -> BitBucket
         3) /dev/random -> Random number generator
-Explore /dev
+### Explore /dev
 ```
 cd /dev && ls -lrt
 ```
@@ -57,7 +57,7 @@ cd /dev && ls -lrt
         1) /var/log – Logs
         2) /var/spool – Print/mail queues
         3) /var/tmp – Persistent temporary file
-try this
+### try this
 ```
 tail -f /var/log/syslog
 ```
@@ -74,7 +74,7 @@ tail -f /var/log/syslog
 ## 10. home - Home directories
    * Home directories for all user to store personal files.
    * For example: /home/ramesh, /home/suresh
-try this
+### try this
 ```
 ls -la
 ```
@@ -87,7 +87,7 @@ ls -la
         1) vmlinuz-* – Kernel binary
         2) initrd.img – Initial RAM disk
         3) grub.cfg – Boot menu configuration
-try this
+### try this
 ```
 ls \boot
 ```
