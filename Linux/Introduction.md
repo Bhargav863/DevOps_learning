@@ -25,3 +25,23 @@ Configs
  * AI/ML/Dev Environments: TensorFlow, PyTorch — commonly deployed 
    on Ubuntu/Debian
  * Gaming: Steam Deck uses Arch Linux; Proton enables Windows game compatibility
+
+## Architecture of Linux
++---------------------------+
+|     User Applications     |
++---------------------------+
+|         Shell             |
++---------------------------+
+|     GNU/Linux Libraries   |
++---------------------------+
+|         System Call       |
++---------------------------+
+|         Kernel            |
+|  - Process Management     |
+|  - Memory Management      |
+|  - File Systems           |
+|  - Device Drivers         |
+|  - Network Stack          |
++---------------------------+
+|       Hardware Layer      |
++---------------------------+
