@@ -1,7 +1,7 @@
-### Introduction to Linux
+# Introduction to Linux
 Linux is a powerful, open-source Unix-like operating system kernel first developed by Linus 
 Torvalds in 1991.
-# Characteristics
+## Characteristics
  * Multitasking
  * Multi-user support
  * Portability across architectures (x86, ARM, RISC-V, etc.)
@@ -10,14 +10,14 @@ Torvalds in 1991.
 
 Everything is a File: Devices, sockets, pipes, configs — all treated as files
 
-# Distribution
+## Distribution
 A distribution = Linux Kernel + Package Manager + Default Utilities + Desktop/CLI + System 
 Configs
-General use - Ubuntu, Debian, Fedora
-Enterprise - RHEL, SUSE, Oracle Linux
-Cloud/server - Ubuntu server, Amazon Linux, Centos stream
+* General use - Ubuntu, Debian, Fedora
+* Enterprise - RHEL, SUSE, Oracle Linux
+* Cloud/server - Ubuntu server, Amazon Linux, Centos stream
 
-#  Real-World Applications of Linux
+##  Real-World Applications of Linux
 
  * Cloud Platforms: AWS, Azure, GCP all use Linux underneath
  * Web Servers: Apache, NGINX, HAProxy, Node.js — all commonly run on Linux
