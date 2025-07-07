@@ -19,7 +19,7 @@ The Linux file system is a hierarchical structure that organizes files and direc
    * Contains super user/ root user binary executables.
    * Linux commands located under this directory are used typically by system administrator.
    * Examples: init, ifconfig, reboot, fsck, iptables
-try this
+### try this
 ```
 cd /sbin && ls -lrt
 ```
