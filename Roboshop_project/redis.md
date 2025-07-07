@@ -12,7 +12,7 @@ tar xzf redis-7.2.4.tar.gz
 cd redis-7.2.4
 make install
 ```
-Update listen address from 127.0.0.1 to 0.0.0.0 in redis.conf and start the redis server 
+Update listen address from 127.0.0.1 to 0.0.0.0 in redis.conf and protected mode as NO,start the redis server and 
 ```
 src/redis-server redis.conf --daemonize yes
 ```
