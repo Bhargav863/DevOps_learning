@@ -28,7 +28,8 @@ Configs
 
 ## Architecture of Linux
 The Linux architecture is a layered structure comprising the hardware, kernel, shell, Utilities and applications.
-![alt text](Linux_Arch)
+
+![alt text](Linux_Arch.jpg)
 
 ### Kernel
 * Kernel is the main core component it is lies between the shell and the hardware.
@@ -62,3 +63,5 @@ The Linux boot process involves the following sequence:
        * /boot/initrd.img → Init RAM disk
        * /etc/fstab → Filesystem mount instructions
        * /etc/systemd/system/*.service → Services configurations
+    
+
