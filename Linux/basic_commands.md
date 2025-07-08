@@ -10,7 +10,9 @@ t - based on time modified
 * cd ~ --> Navigate to Home directory
 * cd - --> Navigate to previous working directory.
 * cd .. --> Go one directory back.
+
 **pwd - shows current working directory you are in**
+
 **mkdir - make/create directories**
 ```
 mkdir dir1
