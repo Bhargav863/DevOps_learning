@@ -63,3 +63,46 @@ echo -e "$GREEN $var1: I am doing good $var2, How are you? $NC"
 echo -e "$BLUE $var2: I am good $var1, Thanks for asking $NC"
 ```
 
+## shell script run the command inside $() and stores the output into variable called DATE.
+
+```
+#!/bin/bash
+DATE=$(date)
+echo " This script is executed at timestamp:$DATE"
+```
+
+## We can pass the variables from command line as well. 
+* $0 --> Script name
+* $1 --> First variable 
+* $2 --> Second variable ....
+basic_args.sh
+```
+#!/bin/bash
+GREEN='\e[32m'
+BLUE='\e[34m'
+NC='\e[0m' # No colour
+
+echo "Hello Team, I am implementing varibales in this script"
+
+var1=$1
+var2=$2
+
+echo -e "$GREEN $var1: Hi $var2 $NC"
+echo -e "$BLUE $var2: Hi $var1, How are you $NC"
+echo -e "$GREEN $var1: I am doing good $var2, How are you? $NC"
+echo -e "$BLUE $var2: I am good $var1, Thanks for asking $NC"
+```
+## command to run
+```
+sh basic_args.sh Bhargav Ram
+```
+## Output
+```
+Hello Team, I am implementing varibales in this script
+ Bhargav: Hi Ram
+ Ram: Hi Bhargav, How are you
+ Bhargav: I am doing good Ram, How are you?
+ Ram: I am good Bhargav, Thanks for asking
+```
+
+
