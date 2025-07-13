@@ -108,5 +108,34 @@ Hello Team, I am implementing varibales in this script
 ## Write a script to add two numbers.
 
 **Addition.sh**
+```
+#!/bin/bash
+
+NUM1=$1
+NUM2=$2
+SUM=$((NUM1 + NUM2))
+
+echo "SUM of two numbers is : $SUM"
+```
+
+* I need to connect to a DB using username and password. I can't hardcode the password in the script. So we can use the read command to prompt the user to enter the password.
+
+```
+read -s username
+```
+**DB_Connect.sh**
+```
+#!/bin/bash
+
+echo "Enter the username:"
+read USERNAME
+
+echo "Enter the password"
+read -s PASSWORD
+
+# s --> -s option used to hide the password from terminal. It won't show on terminal when you type it.
+
+echo "Connected to DB successfully"
+```
 
 
