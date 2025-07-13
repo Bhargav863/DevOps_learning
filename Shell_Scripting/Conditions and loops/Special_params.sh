@@ -2,9 +2,9 @@
 
 persons=("Bhargav" "Sumati" "Srinu" "Sunil")
 
-echo "Number of persons are ${persons[$#]}"
-echo "The first person is ${persons[$0]}"
-echo "All persons are ${persons[$@]}"
+echo "Number of persons are ${#persons[@]}"
+echo "The first person is ${persons[0]}"
+echo "All persons are ${persons[@]}"
 
 -------------------------------------------------------------------------------
 echo "$(date)"
