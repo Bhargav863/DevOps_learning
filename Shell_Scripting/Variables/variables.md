@@ -75,7 +75,7 @@ echo " This script is executed at timestamp:$DATE"
 * $0 --> Script name
 * $1 --> First variable 
 * $2 --> Second variable ....
-basic_args.sh
+**basic_args.sh**
 ```
 #!/bin/bash
 GREEN='\e[32m'
