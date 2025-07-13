@@ -1,6 +1,6 @@
 #!/bin/bash
 GREEN='\e[32m'
-yellow='\e[43'
+yellow='\e[43m'
 NC='\e[0m' # No colour
 
 echo "Hello Team, I am implementing varibales in this script"
