@@ -6,7 +6,7 @@ NC='\e[0m' # No colour
 echo "Hello Team, I am implementing varibales in this script"
 
 var1=Bhargav
-var2=sumati
+var2=Sumati
 
 echo -e "$GREEN $var1: Hi $var2 $NC"
 echo -e "$BLUE $var2: Hi $var1, How are you $NC"
