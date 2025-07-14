@@ -132,7 +132,7 @@ Validate() {
     if [ $1 -eq 0 ]; then
         echo -e "$G $2 is installed successfully...$N"
     else
-        echo "$R $2 is failed to install...$N"
+        echo -e "$R $2 is failed to install...$N"
         exit 1
     fi
 }
@@ -174,7 +174,7 @@ validate() {
     if [ $1 -eq 0 ]; then
         echo -e "$G $2 is installed successfully...$N"
     else
-        echo "$R $2 is failed to install...$N"
+        echo -e "$R $2 is failed to install...$N"
         exit 1
     fi
 }
