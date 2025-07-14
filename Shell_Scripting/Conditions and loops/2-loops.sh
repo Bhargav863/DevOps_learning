@@ -2,6 +2,7 @@
 
 R="\e[31m"
 G="\e[32m"
+Y="\e[33m"
 N="\e[0m"
 
 User_id=$(id -u)
@@ -21,6 +22,12 @@ validate() {
 }
 
 for i in $@; do
-    yum install $i -y &>>$LogFile
-    validate $? "$i"
+    yum list installed $i &>>$LogFile
+    if [ $? -ne 0 ]; then
+        echo -e "$Y...$i is not present...Installing...$N"
+        yum install $i -y &>>$LogFile
+        validate $? "$i"
+    else
+        echo -e "$G..$i is already installed..$N"
+    fi
 done
