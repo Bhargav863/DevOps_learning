@@ -184,3 +184,63 @@ for i in $@; do
     validate $? "$i"
 done
 ```
+
+* When the script runs, all the output is printing on the terminal. It becomes hard to identify the exact output. Redirect the logs and errors to the log file and print installtion status only on the terminal.
+* To redirect the errors and logs, we can use I/O redirection.
+* **>** --> it will remove previous content, and adds new content
+```
+ls -l > /tmp/log.txt
+```
+* **>>** -->  It will append the content to the previous content.
+```
+ls -l > /tmp/log.txt
+date >> /tmp/log.txt
+```
+* **1>** --> It will only redirect the success output.
+```
+ls -ldacsazvsv 1> /tmp/log.txt
+ls -l 1> /tmp/log.txt
+```
+* **2>** --> It will only redirect the error output.
+```
+ls -l 2> /tmp/log.txt
+ls -lalfjsevna 2> /tmp/log.txt
+```
+* **&>** --> It will redirect both the success and error output.
+```
+(date & lss -l) &> /tmp/log.txt
+```
+* **&>>** --> It will append both the success and failure to the previous content.
+```
+(date & lss -l) &>> /tmp/log.txt
+```
+
+## Add the log redirection to the above script.
+```
+#!/bin/bash
+
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
+
+User_id=$(id -u)
+LogFile=/tmp/log.txt
+
+if [ $User_id -ne 0 ]; then
+    echo "Hello, Please run this as a root/sudo user"
+fi
+
+validate() {
+    if [ $1 -eq 0 ]; then
+        echo -e "$G $2 is installed successfully...$N"
+    else
+        echo -e "$R $2 is failed to install...$N"
+        exit 1
+    fi
+}
+
+for i in $@; do
+    yum install $i -y &>>$LogFile
+    validate $? "$i"
+done
+

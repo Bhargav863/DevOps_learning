@@ -5,6 +5,7 @@ G="\e[32m"
 N="\e[0m"
 
 User_id=$(id -u)
+LogFile=/tmp/log.txt
 
 if [ $User_id -ne 0 ]; then
     echo "Hello, Please run this as a root/sudo user"
@@ -20,6 +21,6 @@ validate() {
 }
 
 for i in $@; do
-    yum install $i -y
+    yum install $i -y &>>$LogFile
     validate $? "$i"
 done
