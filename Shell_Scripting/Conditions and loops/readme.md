@@ -147,3 +147,40 @@ yum install docker -y
 
 Validate $? "docker"
 ```
+* If you want to install multiple packages at the same time, you need to use for loop instead of hardcoding the package. Then the script with loop through all the packages and install it.
+
+```
+#!/bin/bash
+
+for i in {1..100}; do
+    echo "$i"
+done
+```
+* Update the previous script to take the package names dynamically.
+```
+#!/bin/bash
+
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
+
+User_id=$(id -u)
+
+if [ $User_id -ne 0 ]; then
+    echo "Hello, Please run this as a root/sudo user"
+fi
+
+validate() {
+    if [ $1 -eq 0 ]; then
+        echo -e "$G $2 is installed successfully...$N"
+    else
+        echo "$R $2 is failed to install...$N"
+        exit 1
+    fi
+}
+
+for i in $@; do
+    yum install $i -y
+    validate $? "$i"
+done
+```
