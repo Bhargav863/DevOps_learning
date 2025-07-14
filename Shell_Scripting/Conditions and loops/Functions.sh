@@ -2,16 +2,16 @@
 
 User_id=$(id -u)
 
-if [ User_id -ne 0 ]; then
+if [ $User_id -ne 0 ]; then
     echo "Hello, Please run this as a root/sudo user"
 fi
 
 Validate() {
     if [ $1 -eq 0 ]; then
         echo "$2 is installed successfully"
-        exit 1
     else
         echo "$2 is failed to install"
+        exit 1
     fi
 }
 
