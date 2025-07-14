@@ -118,9 +118,9 @@ Validate $? "docker"
 ```
 #!/bin/bash
 
-R="e\[31m"
-G="e\[32m"
-N="e\[0m"
+R="\e[31m"
+G="\e[32m"
+N="\e[0m"
 
 User_id=$(id -u)
 
