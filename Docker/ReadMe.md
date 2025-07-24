@@ -30,7 +30,7 @@ Docker is a open source containerisation platform for developing, shipping and r
 
 ## Docker Architecture
 
-![Docker_Arch]
+![Docker_Arch.png]
 
 ### Understanding the terminology (Inspired from Docker Docs)
 
