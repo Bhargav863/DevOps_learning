@@ -30,7 +30,7 @@ Docker is a open source containerisation platform for developing, shipping and r
 
 ## Docker Architecture
 
-![Docker_arch](Docker_arch.png)
+![Docker_arch](Docker_Architecture.jpg)
 
 #### Docker daemon
 
@@ -48,3 +48,15 @@ Docker daemon and docker client communicate using a REST API over unix sockets o
 A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry.
 
 When you use the docker pull or docker run commands, the required images are pulled from your configured registry. When you use the docker push command, your image is pushed to your configured registry.
+
+### Docker LifeCycle 
+
+![Docker_lifecycle](Docker_lifecycle.jpg)
+
+We can use the above Image as reference to understand the lifecycle of Docker.
+
+There are three important things,
+
+1. docker build -> builds docker images from Dockerfile
+2. docker run   -> runs container from docker images
+3. docker push  -> push the container image to public/private regestries to share the docker images.
