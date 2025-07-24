@@ -3,7 +3,7 @@ A container is a standard unit of software that packages up code and all its dep
 
 In short form, A container is a bundle of Application, Application libraries required to run your application and the minimum system dependencies.
 
-![Docker_container.jpg]
+![Docker Container](Docker_container.jpg)
 
 ## Containers vs Virtual Machine 
 
@@ -30,7 +30,7 @@ Docker is a open source containerisation platform for developing, shipping and r
 
 ## Docker Architecture
 
-![Docker_Arch.png]
+![Docker Architecture](Docker_arch.png)
 
 ### Understanding the terminology (Inspired from Docker Docs)
 
