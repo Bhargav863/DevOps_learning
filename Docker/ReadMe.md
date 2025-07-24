@@ -29,11 +29,7 @@ Containers are lightweight because they use a technology called containerization
 Docker is a open source containerisation platform for developing, shipping and running applications. It provides the ability to package and run the applications in a loosely isolated environment called a container. This isolation helps you to run multiple containers on a given host.
 
 ## Docker Architecture
-
-![Docker Architecture](Docker_arch.png)
-
-### Understanding the terminology (Inspired from Docker Docs)
-
+![Docker_arch.png]
 
 #### Docker daemon
 
