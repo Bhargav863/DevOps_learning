@@ -15,6 +15,6 @@ sudo systemctl start docker.service
 ```
 Add the user to the docker group
 ```
-usermod -aG docker $USER
+sudo usermod -aG docker $USER
 ```
 
