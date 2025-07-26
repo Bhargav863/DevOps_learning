@@ -71,4 +71,18 @@ docker build -t entry:v3 .
 ```
 docker run entry:v3
 ```
+```
+[root@ip-172-31-28-221 ENTRYPOINT]# docker run entry:v3
+PING google.com (64.233.180.101) 56(84) bytes of data.
+64 bytes from on-in-f101.1e100.net (64.233.180.101): icmp_seq=1 ttl=105 time=1.81 ms
+64 bytes from on-in-f101.1e100.net (64.233.180.101): icmp_seq=2 ttl=105 time=1.85 ms
+64 bytes from on-in-f101.1e100.net (64.233.180.101): icmp_seq=3 ttl=105 time=1.63 ms
+64 bytes from on-in-f101.1e100.net (64.233.180.101): icmp_seq=4 ttl=105 time=1.70 ms
+64 bytes from on-in-f101.1e100.net (64.233.180.101): icmp_seq=5 ttl=105 time=1.69 ms
+
+--- google.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4007ms
+rtt min/avg/max/mdev = 1.627/1.734/1.848/0.093 ms
+[root@ip-172-31-28-221 ENTRYPOINT]#
+```
 
