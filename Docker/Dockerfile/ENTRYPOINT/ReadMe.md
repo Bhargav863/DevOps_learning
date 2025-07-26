@@ -38,10 +38,23 @@ nginx: invalid option: "ping"
 ### EXAMPLE DOCKERFILE
 ```
 FROM almalinux:8
-ENTRYPOINT [ "ping", "-c5;"]
+ENTRYPOINT [ "ping", "-c5" ]
 ```
 ```
 docker build -t entry:v2 .
+```
+```
+[root@ip-172-31-28-221 ENTRYPOINT]# docker run entry:v2 google.com
+PING google.com (172.253.115.139) 56(84) bytes of data.
+64 bytes from bg-in-f139.1e100.net (172.253.115.139): icmp_seq=1 ttl=105 time=1.85 ms
+64 bytes from bg-in-f139.1e100.net (172.253.115.139): icmp_seq=2 ttl=105 time=1.97 ms
+64 bytes from bg-in-f139.1e100.net (172.253.115.139): icmp_seq=3 ttl=105 time=1.74 ms
+64 bytes from bg-in-f139.1e100.net (172.253.115.139): icmp_seq=4 ttl=105 time=2.04 ms
+64 bytes from bg-in-f139.1e100.net (172.253.115.139): icmp_seq=5 ttl=105 time=1.79 ms
+
+--- google.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4006ms
+rtt min/avg/max/mdev = 1.738/1.879/2.041/0.115 ms
 ```
 ```
 docker run entry:v2 google.com
