@@ -130,6 +130,17 @@ root@4b23fb88db80:/#
 
 ```
 
+## HOST Networking
+
+![Host](Host.jpg)
+* This Mode of network allows containers to share the host system's network stack, providing direct access to the host system's network.
+* To attach the host network to the docker container
+```
+docker run -d --network=host --name service_C nginx
+```
+* If you create a container in host network, the container will use the same IP and network configuration as the host.
+**when you use host network the container is less isolated from the host system, and has access to all host's network resources. So, this can be a security risk, use host network with caution**
+
 
 
 
