@@ -12,5 +12,16 @@ FROM almalinux:${version}
 ```
 * Command to pass the arguments.
 ```
-docker build -t arg:v1 --build-arg version=9
+docker build -t arg:v1 --build-arg version=8
+```
+* If user forgets to pass the value to the ARG there should always be a default value.
+```
+ARG version
+FROM almalinux:${version:-8}
+ARG COURSE
+ARG LEARNER
+echo "${LEARNER} is learning ${COURSE}"
+```
+```
+docker build -t arg:v2 . --build-arg COURSE=Docker LEARNER=Bhargav
 ```
