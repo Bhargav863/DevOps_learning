@@ -16,8 +16,20 @@ abe85f5d3a28   host       host      local
 7cca31a313db   none       null      local
 ```
 ### None Network
+![None.jpg]
 * None is a docker network-type where the container is not attached to any network. As a result, the container is unable to communicate with any external network or other containers. It is isolated from every other network.
 * You can run an nginx container in a "none" network type using the following command:
 ```
 docker run -d --network none --name my_nginx nginx
 ```
+```
+docker inspect <container_id>
+```
+ "MacAddress": "",
+            "Networks": {
+                "none": {
+                    "IPAMConfig": null,
+                    "Links": null,
+```
+
+### Bridge Network
