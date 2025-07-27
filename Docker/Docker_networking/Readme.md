@@ -138,6 +138,18 @@ root@4b23fb88db80:/#
 ```
 docker run -d --network=host --name service_C nginx
 ```
+```
+"Networks": {
+                "host": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "",
+                    "NetworkID": "0863b2ac2efb6b7e2bd040e8baf72a82c86cd1279a95c8b0c3fe1e3bef6da048",
+                    "EndpointID": "4529e5875074b6e617e6b16d42f4c764984fb5385b2caf419d28aaf28dd2386f",
+                    "Gateway": "",
+                    "IPAddress": "",
+```
 * If you create a container in host network, the container will use the same IP and network configuration as the host.
 **when you use host network the container is less isolated from the host system, and has access to all host's network resources. So, this can be a security risk, use host network with caution**
 
