@@ -81,5 +81,57 @@ root@64a97d5dc3a0:/#
 ```
 * To overcome this we can use user defined bridge network.
 
+## User defined bridge networking
+
+![user defined](User_defined.jpg)
+
+* This network type is also similar to the bridge network. This will also create an private internal network within the host. You can see it by running "ifconfig" on the server.
+* It won't come with the docker, you have to create by yourself.
+```
+docker network create -d bridge demo_network
+```
+* -d specifies the driver.
+* check it's created or not.
+```
+docker network ls
+```
+```
+NETWORK ID     NAME           DRIVER    SCOPE
+8bd9d315c52f   bridge         bridge    local
+e598209412cd   demo_network   bridge    local
+0863b2ac2efb   host           host      local
+192e040a52c3   none           null      local
+```
+```
+[root@ip-172-31-28-221 ~]# docker run -d --network=demo_network --name service_A nginx
+e328722859a5eaaa50562817db587f34802be2b6aa4a8ecc5ca8776d15db4e20
+[root@ip-172-31-28-221 ~]# docker run -d --network=demo_network --name service_B nginx
+4b23fb88db80165257f1908247b29a063e0d0bba8dd26c895b647bec240d4e39
+```
+* service_A and service_B containers are now attached to the 'demo_net' network
+```
+[root@ip-172-31-28-221 ~]# docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+4b23fb88db80   nginx     "/docker-entrypoint.…"   5 seconds ago    Up 4 seconds    80/tcp    service_B
+e328722859a5   nginx     "/docker-entrypoint.…"   16 seconds ago   Up 15 seconds   80/tcp    service_A
+[root@ip-172-31-28-221 ~]#
+```
+* Login to one container and ping another container using container name. It will work.
+```
+root@4b23fb88db80:/# ping -c2 service_A
+PING service_A (172.18.0.2) 56(84) bytes of data.
+64 bytes from service_A.demo_network (172.18.0.2): icmp_seq=1 ttl=127 time=0.039 ms
+64 bytes from service_A.demo_network (172.18.0.2): icmp_seq=2 ttl=127 time=0.061 ms
+
+--- service_A ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1023ms
+rtt min/avg/max/mdev = 0.039/0.050/0.061/0.011 ms
+root@4b23fb88db80:/#
+
+```
+
+
+
+
 
 
