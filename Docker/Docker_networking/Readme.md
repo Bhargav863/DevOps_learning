@@ -5,3 +5,15 @@
 3) Bridge (user defined)
 4) Host.
 
+* To list the network 
+```
+docker network ls
+```
+```
+NETWORK ID     NAME       DRIVER    SCOPE
+b3b2b47ad7d5   bridge     bridge    local
+abe85f5d3a28   host       host      local
+7cca31a313db   none       null      local
+```
+### None Network
+*
