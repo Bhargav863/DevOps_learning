@@ -8,5 +8,5 @@ ARG version
 FROM almalinux:${version:-8}
 ARG COURSE
 ARG LEARNER
-echo "${LEARNER} is learning ${COURSE}"
+RUN echo "${LEARNER} is learning ${COURSE}"
 

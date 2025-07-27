@@ -20,7 +20,7 @@ ARG version
 FROM almalinux:${version:-8}
 ARG COURSE
 ARG LEARNER
-echo "${LEARNER} is learning ${COURSE}"
+RUN echo "${LEARNER} is learning ${COURSE}"
 ```
 ```
 docker build -t arg:v2 . --build-arg COURSE=Docker LEARNER=Bhargav
