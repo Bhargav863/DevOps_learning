@@ -23,5 +23,5 @@ ARG LEARNER
 RUN echo "${LEARNER} is learning ${COURSE}"
 ```
 ```
-docker build -t arg:v2 . --build-arg COURSE=Docker LEARNER=Bhargav
+docker build -t arg:v2 --build-arg COURSE=Docker --build-arg LEARNER=Bhargav .
 ```
