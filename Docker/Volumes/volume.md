@@ -34,6 +34,7 @@ docker inspect <container_id>
 
 ## Bind Mounts
 
+* A bind mount connects a specific path on the host machine to a path inside the container.
 * Another way is that you can create a directory on your host and attach it to the container.
 ```
 mkdir -p /home/user/nginx/data
