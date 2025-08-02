@@ -1,4 +1,4 @@
-* Docker containers are emphermal in nature, data will be deleted once the container stops or exited.
+* Docker containers are ephermal in nature, data will be deleted once the container stops or exited.
 * Docker containers are best suited for stateless applications because their files systems are emphermal in nature.
 * If you DB as a container, by default data will deleted once you deleted the container or the container exited by itself.
 * To overcome this situation we can volumes in docker.
