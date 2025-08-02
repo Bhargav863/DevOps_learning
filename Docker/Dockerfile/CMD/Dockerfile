@@ -4,4 +4,5 @@ RUN yum install nginx -y
 # CMD is used to run the commands inside the container, It will only run the commands only at the time of container creation.
 # There can only be one CMD instruction in a Dockerfile. If you list more than one CMD, only the last one takes effect.
 RUN echo "Welcome to the Docker file,a way of creating images"
+RUN echo "Adding another layer:add"
 CMD [ "nginx", "-g", "daemon off;" ]
