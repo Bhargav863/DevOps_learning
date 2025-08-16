@@ -25,13 +25,13 @@ kubectl version --client
 * Use docker.sh script to install docker.
 
 **STEP3**
-## Install minikube on server.
+## Install minikube on server as a non root user.
 * To install the latest minikube stable release on x86-64 Linux using Debian package:
 ```
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 sudo dpkg -i minikube_latest_amd64.deb
 ```
-* start your cluster
+* start your cluster as a non-root user.
 ```
 minikube start
 ```
