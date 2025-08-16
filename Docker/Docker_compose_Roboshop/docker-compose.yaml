@@ -1,0 +1,108 @@
+networks:
+  roboshop:
+    driver: bridge
+volumes:
+  mongodb:
+  redis:
+  mysql:
+  rabbitmq:
+services:
+  mongodb:
+    image: bhargav863/mongodb:v1
+    container_name: mongodb
+    networks:
+      - roboshop
+    volumes:
+      - source: mongodb
+        target: /data/db
+        type: volume
+  
+  catalogue:
+    image: bhargav863/catalogue:v1
+    container_name: catalogue
+    networks:
+      - roboshop
+    depends_on:
+       - mongodb
+  
+  redis:
+    image: redis
+    container_name: redis
+    networks:
+      - roboshop
+    volumes:
+      - source: redis
+        target: /data
+        type: volume
+  user:
+    image: bhargav863/user:v1
+    container_name: user
+    networks:
+      - roboshop
+    depends_on:
+      - mongodb
+      - redis
+  cart:
+    image: bhargav863/cart:v1
+    container_name: cart
+    networks:
+      - roboshop
+    depends_on:
+       - redis
+       - catalogue
+  mysql:
+    image: bhargav863/mysql:v1
+    container_name: mysql
+    networks:
+      - roboshop
+    volumes:
+     - source: mysql
+       target: /var/lib/mysql
+       type: volume
+
+  shipping:
+    image: bhargav863/shipping:v1
+    container_name: shipping
+    networks:
+       - roboshop
+    depends_on:
+       - mysql
+       - cart
+  rabbitmq:
+    image: bhargav863/rabiitmq:v1
+    container_name: rabbitmq
+    networks: 
+       - roboshop
+    volumes:
+      - source: rabbitmq
+        target: /var/lib/rabbitmq
+        type: volume
+    environment:
+      - RABBITMQ_DEFAULT_USER=roboshop
+      - RABBITMQ_DEFAULT_PASS=roboshop123
+  payment:
+    image: bhargav863/payment:v1
+    container_name: payment
+    networks:
+      - roboshop
+    depends_on:
+      - cart
+      - user
+      - rabbitmq
+  web:
+    image: bhargav863/web:v1
+    container_name: web
+    networks:
+     - roboshop
+    ports:
+     - "80:80"
+    depends_on:
+      - catalogue
+      - user
+      - cart
+      - shipping
+      - payment
+
+      
+
+
