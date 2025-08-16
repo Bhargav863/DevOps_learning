@@ -1,4 +1,4 @@
-* Namespaces in kubernetes re logical partitions within a cluster that allows you to group and isolate resources likes pods, deployments, replicasets and services etc.,
+* Namespaces in kubernetes are logical partitions within a cluster that allows you to group and isolate resources likes pods, deployments, replicasets and services etc.,
 * Namespaces are like separate workspaces inside the same cluster.
 * Namespaces are especially useful when managing large scale systems involving multiple teams,projects or environments.
 * If you won't use namespace, by default kubernetes will use the default namespace.
