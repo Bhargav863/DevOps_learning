@@ -69,7 +69,7 @@ services:
        - mysql
        - cart
   rabbitmq:
-    image: bhargav863/rabitmq:v1
+    image: bhargav863/rabbitmq:v1
     container_name: rabbitmq
     networks: 
        - roboshop
