@@ -22,7 +22,7 @@ validate(){
        echo -e "$2 ...$R Failed $N"
     else
        echo -e "$2...$G success $N"
-
+    fi
 }
 
 sudo apt-get update &>>$LOGFILE
