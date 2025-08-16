@@ -10,6 +10,7 @@
    docker tag app:v1 username/app:v1
    ```
 **Example**
+
    ```
    docker tag shipping:v1 bhargav863/shipping:v1
    ```
@@ -18,6 +19,7 @@
    docker push username/app:v1
    ```
 **EXAMPLE**
+
    ```
    docker push bhargav863/shipping:v1
    ``` 
