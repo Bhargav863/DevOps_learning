@@ -10,7 +10,7 @@ SCRIPT_NAME=$(basename "$0")
 LOGFILE=$LOGSDIR/$SCRIPT_NAME-$DATE.log
 
 
-if [[$User_id -ne 0 ]];
+if [[ $User_id -ne 0 ]];
 then
 echo -e "$R ERROR:: Please run this script as a root user or with sudo privileges $N"
 exit 1
