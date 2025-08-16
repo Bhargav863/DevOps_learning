@@ -50,15 +50,15 @@ validate $? update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin &>>$LOGFILE
 validate $? 'installation of docker is'
 
-systemctl start docker &>>$LOGFILE
+sudo systemctl start docker &>>$LOGFILE
 
 VALIDATE $? "Docker Started"
 
-systemctl enable docker &>>$LOGFILE
+sudo systemctl enable docker &>>$LOGFILE
 
 VALIDATE $? "Docker Enabled"
 
-usermod -aG docker ubuntu &>>$LOGFILE
+sudo usermod -aG docker ubuntu &>>$LOGFILE
 
 VALIDATE $? "ubuntu user added to docker group"
 
