@@ -47,7 +47,7 @@ validate $? Repository_setup
 sudo apt-get update &>>$LOGFILE
 validate $? update
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin &>>$LOGFILE
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin &>>$LOGFILE
 validate $? 'installation of docker is'
 
 systemctl start docker &>>$LOGFILE
