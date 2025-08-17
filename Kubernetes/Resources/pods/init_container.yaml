@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+spec:
+  initContainers:
+    - name: init-myservice
+      image: busybox:1.35
+      command: ["sh", "-c", "echo Initializing... && sleep 10"]
+      # This container runs first, and must complete successfully before the main container starts
+  containers:
+    - name: myapp-container
+      image: nginx:latest
+      ports:
+        - containerPort: 80

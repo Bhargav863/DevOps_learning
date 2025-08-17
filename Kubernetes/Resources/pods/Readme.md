@@ -35,3 +35,17 @@
   ```
   kubectl delete pod <pod-name> -n <namespace>
   ```
+
+* Multiple containers are used in case of 
+   1) Side car containers
+   2) Init containers
+## Init containers
+* Init Containers are special containers that run before the main application containers in a pod start.
+* They are designed to perform initialization tasks, such as setting up configuration files, initializing databases, or any other operation necessary for the proper functioning of the application.
+![init container](Init_container.jpg)
+## UseCases
+* Configuration setup
+   1) Initializing a configuration file before the main application starts, ensuring it has the required settings.
+* Database Initialization
+   1) Running a database schema initialization script to prepare the database before the main application connects.
+* Each init container runs one after the other and must finish successfully before the main containers begin.
