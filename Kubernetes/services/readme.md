@@ -15,7 +15,8 @@
 
 ![Cluster_Ip](clusterIP.png)
 
-cluster_Ip.yaml
+## cluster_Ip.yaml
+
 ```
 apiVersion: v1
 kind: Pod
@@ -54,3 +55,82 @@ spec:
 * Cluster IP is the subset of the Nodeport, It will automatically create the Cluster IP in the background.
 
 ![node-port](node_port.jpg)
+
+## nodeport.yaml
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+  labels:
+    environment: dev
+    app: frontend
+spec:
+  containers:
+    - image: nginx
+      name: sample-nginx
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: NodePort
+  selector:
+    environment: dev
+    app: frontend
+  ports:
+    - name: name-of-the-service-port
+      protocol: "TCP"
+      port: 80 # This port belongs to the service
+      targetPort: sample-nginx # This port belongs to the container
+```
+* This will open a port to access the application from outside.
+* **Use case:** When you want to access your application from outside the cluster without a LoadBalancer.
+* **Limitation:** Requires manually handling Node IPs and ports. Which is hard to manage.
+
+## LoadBalancer service
+* A LoadBalancer Service is another way you can expose your application to external clients. However, it only works when you're using Kubernetes on a cloud platform that supports this Service type.
+* The LoadBalancer Service detects the cloud computing platform on which the cluster is running and creates an appropriate load balancer in the cloud provider’s infrastructure. The load balancer will have its own unique, publicly accessible IP address. For example, if the cluster is running on Amazon Web Services (AWS), the Service will create an Elastic Load Balancer (ELB) to distribute incoming traffic across multiple nodes in the cluster.
+
+![Load_balancer](Load_balancer.jpg)
+
+## loadbalancer.yaml
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+  labels:
+    environment: dev
+    app: frontend
+spec:
+  containers:
+    - image: nginx
+      name: sample-nginx
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: NodePort
+  selector:
+    environment: dev
+    app: frontend
+  ports:
+    - name: name-of-the-service-port
+      protocol: "TCP"
+      port: 80 # This port belongs to the service
+      targetPort: sample-nginx # This port belongs to the container
+```
+* To see the load balancer address
+ ```
+ kubectl get svc
+ ```
