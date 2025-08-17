@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Deployment
 metadata:
   name: sample-pod
-  labels: # These labels are replicaset labels, every k8 resource should have lables.
+  labels: # These labels are deployment labels, every k8 resource should have lables.
     environment: dev
     app: frontend
 spec:
