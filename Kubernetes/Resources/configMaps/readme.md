@@ -21,6 +21,8 @@ data:
 ```
 ## Attach it to the pod as a environment variables.
 
+* Use envFrom to define all configMap's data as a container environment varibales. It can be useful when you need to attach more variables from configmap.
+
 ```
 apiVersion: v1
 kind: Pod
