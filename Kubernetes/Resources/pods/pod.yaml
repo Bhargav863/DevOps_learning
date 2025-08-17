@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: pod
+metadata:
+  name: sample-pod
+  namespace: roboshop
+spec:
+  containers:
+    - image: nginx
+      name: sample-nginx
+      ports:
+        - containerPort: 80
