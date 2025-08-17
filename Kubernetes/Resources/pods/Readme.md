@@ -8,3 +8,30 @@
 * Containers running inside a pod should have different port numbers to avoid port clashes.
 * Containers inside a pod share the same volume mount.
 * All the containers inside a pod are scheduled on the same node; It cannot span multiple nodes.
+* create the pod using the manifest file
+  ```
+  kubectl apply -f pod.yaml
+  ```
+                  **OR**
+  ```
+  kubectl create -f pod.yml
+  ```
+* To check the pod status 
+   ```
+   kubectl get pods -n namespace
+   ```
+* Check the status of the pod along with labels
+  ```
+  kubectl get pods --show-labels
+  ```
+* Check the status of the pod including node name and IP addresses
+  ```
+  kubectl get pods -o wide
+  ```
+* To delete the pod, there are 2 ways
+  ```
+  kubectl delete pod -f pod.yaml
+  ```
+  ```
+  kubectl delete pod <pod-name> -n <namespace>
+  ```
