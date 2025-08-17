@@ -38,3 +38,42 @@ kubectl get pods -l app=nginx
 ```
 kubectl get pods -l env=dev
 ```
+
+## Annotations
+* Annotations are also key-value pairs attached to Kubernetes objects, but for storing metadata.
+* **Purpose:** Used for information that tools, libraries, or humans need, not for selecting resources.
+* **Key Feature:** Annotations cannot be used for selecting objects.
+
+**Common Use cases**
+* Adding build/version info (e.g., build: "jenkins-job-122").
+* Storing contact info (e.g., owner: "devops-team@example.com").
+* Adding URLs for dashboards or documentation.
+* Storing checksums for configuration for automated rollouts.
+* Used by tools like Prometheus, Istio, Linkerd for configs. 
+
+## annotation.yaml
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-annotated
+  annotations:
+    description: "This pod runs the NGINX web server"
+    owner: "devops-team@example.com"
+    buildNumber: "jenkins-123"
+    documentation: "https://internal-docs.example.com/nginx"
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+```
+```
+kubectl apply -f annotation.yaml
+```
+```
+kubectl describe pod nginx-annotated
+```
+## Difference Between Labels And Annotations
+* Kubernetes Labels and Kubernetes Annotations are used to add the metadata to our Kubernetes objects. But there is a difference between both of them. Kubernetes Labels allow us to do a grouping of our objects so that we can perform queries for viewing and operating.
+
+* Kubernetes Annotations are used for adding non-identifying metadata to Kubernetes objects. This metadata information is only for the user. Annotations can hold any kind of information that is useful and can provide context to DevOps teams. Examples include phone numbers of persons responsible for the object or tool information for debugging purposes.
