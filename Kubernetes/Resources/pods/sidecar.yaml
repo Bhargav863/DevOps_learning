@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-sidecar-simple
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+    - name: sidecar-logger
+      image: busybox
+      command:
+        ["sh", "-c", 'while true; do echo "Sidecar running..."; sleep 5; done']

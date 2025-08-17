@@ -49,3 +49,12 @@
 * Database Initialization
    1) Running a database schema initialization script to prepare the database before the main application connects.
 * Each init container runs one after the other and must finish successfully before the main containers begin.
+## Sidecar containers
+* A sidecar container runs alongside your main application container in the same pod and extends its functionality without changing the application code.
+![side_car](sidecar.jpg)
+* Sidecar Containers run concurrently with the primary container, allowing for parallel execution of tasks.
+## use cases
+* Logging and monitoring
+  1)  A logging sidecar container collecting and forwarding logs to a centralized logging system.
+* security operations
+  1) A sidecar container handling encryption/decryption tasks to secure communication for the main application.
