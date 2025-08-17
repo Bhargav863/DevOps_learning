@@ -7,6 +7,7 @@ Y="\e[33m"
 User_id=$(id -u)
 LOGSDIR=/tmp
 SCRIPT_NAME=$(basename "$0")
+DATE=$(date +%F-%H-%M-%S)
 LOGFILE=$LOGSDIR/$SCRIPT_NAME-$DATE.log
 
 
@@ -25,15 +26,15 @@ validate(){
     fi
 }
 
-sudo apt-get update &>>$LOGFILE
+apt-get update &>>$LOGFILE
 validate $? update 
 
-sudo apt-get install ca-certificates curl &>>$LOGFILE
+apt-get install ca-certificates curl &>>$LOGFILE
 validate $? 'curl and ca-cert'  
 
-sudo install -m 0755 -d /etc/apt/keyrings &>>$LOGFILE
+install -m 0755 -d /etc/apt/keyrings &>>$LOGFILE
 validate $? permission_setup 
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc &>>$LOGFILE
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc &>>$LOGFILE
 validate $? gpg_key_download
 sudo chmod a+r /etc/apt/keyrings/docker.asc &>>$LOGFILE
 validate $? permissons_setup 
@@ -44,22 +45,22 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 validate $? Repository_setup
 
-sudo apt-get update &>>$LOGFILE
+apt-get update &>>$LOGFILE
 validate $? update
 
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin &>>$LOGFILE
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin &>>$LOGFILE
 validate $? 'installation of docker is'
 
 systemctl start docker &>>$LOGFILE
 
-VALIDATE $? "Docker Started"
+validate $? "Docker Started"
 
 systemctl enable docker &>>$LOGFILE
 
-VALIDATE $? "Docker Enabled"
+validate $? "Docker Enabled"
 
 usermod -aG docker ubuntu &>>$LOGFILE
 
-VALIDATE $? "ubuntu user added to docker group"
+validate $? "ubuntu user added to docker group"
 
 echo -e "$R Please logout and login again $N"
