@@ -48,3 +48,9 @@ spec:
 * Using cluster IP we can't access the application from outside.
 
 ## Nodeport
+
+* Exposes the Service on each Node’s IP at a static port (30000–32767).
+* Opens a random port between (30000-32767) on all nodes available.
+* Cluster IP is the subset of the Nodeport, It will automatically create the Cluster IP in the background.
+
+![node-port](node_port.jpg)
