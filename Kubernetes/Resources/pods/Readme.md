@@ -64,3 +64,25 @@
   1)  A logging sidecar container collecting and forwarding logs to a centralized logging system.
 * security operations
   1) A sidecar container handling encryption/decryption tasks to secure communication for the main application.
+
+* To describe the pod
+  ```
+  kubectl describe pod <pod_name> 
+  ```
+* To login to the pod
+  ```
+  kubectl exec -it pod_name --bash
+  ```
+* To see the logs of the pod
+  ```
+  kubectl logs pod_name
+  ```
+* If you have multiple containers inside the pods and to see the logs of the particular container
+  ```
+  kubectl logs pod_name -c <container_name>
+  ```
+* To login to the particular container inside the pod
+  ```
+  kubectl exec -it nginx-sidecar-simple -c sidecar-logger -- sh
+  kubectl exec -it pod_name -c container_name --sh
+  ```
