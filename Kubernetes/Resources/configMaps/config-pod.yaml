@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: pod
+metadata:
+  name: config-map-env-prod
+spec:
+  containers:
+    - name: app-container
+      image: nginx
+      env:
+        - name: app_name
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: APP_NAME
+        - name: db_url
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: DB_URL
