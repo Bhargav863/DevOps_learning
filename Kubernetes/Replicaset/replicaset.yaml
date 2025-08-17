@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicaSet
+metadata:
+  name: sample-pod
+  labels: # These labels are replicaset labels, every k8 resource should have lables.
+    environment: dev
+    app: frontend
+spec:
+  replicas: 3 # specifies the number of pods to be created
+  selector:
+    matchLabels: # these labels should match pod lables.
+      environment: dev
+      tier: frontend
+      app: nginx
+  template: # template nothing but the pod definiton
+    metadata:
+      labels: # these are the pod labels.
+        environment: dev
+        tier: frontend
+        app: nginx
+  spec:
+    containers:
+      - image: nginx
+        name: sample-nginx
+        ports:
+          - containerPort: 80
