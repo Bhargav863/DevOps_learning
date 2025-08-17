@@ -1,4 +1,5 @@
-* imagePullPolicy in Kubernetes defines when and how the container image should be pulled from the container registry (like Docker Hub, ECR, GCR, etc.). It’s part of the container spec inside a Pod or Deployment manifest.
+* ImagePullPolicy in Kubernetes defines when and how the container image should be pulled from the container registry (like Docker Hub, ECR, GCR, etc.). It’s part of the container spec inside a Pod or Deployment manifest.
+
 **Available values of image pull policy**
 ## Always
 1) The image is pulled every time the Pod is started or restarted, regardless of whether the image exists locally.
@@ -20,6 +21,7 @@
 ## Default behaviour
 * If image tag = latest → default policy is Always.
 * For all other tags → default policy is IfNotPresent.
+
 **imagepullPolicy.yaml**
 ```
 apiVersion: v1
