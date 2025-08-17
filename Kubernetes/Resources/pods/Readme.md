@@ -12,7 +12,9 @@
   ```
   kubectl apply -f pod.yaml
   ```
+
                   **OR**
+
   ```
   kubectl create -f pod.yml
   ```
@@ -42,7 +44,9 @@
 ## Init containers
 * Init Containers are special containers that run before the main application containers in a pod start.
 * They are designed to perform initialization tasks, such as setting up configuration files, initializing databases, or any other operation necessary for the proper functioning of the application.
+
 ![init container](Init_container.jpg)
+
 ## UseCases
 * Configuration setup
    1) Initializing a configuration file before the main application starts, ensuring it has the required settings.
@@ -51,7 +55,9 @@
 * Each init container runs one after the other and must finish successfully before the main containers begin.
 ## Sidecar containers
 * A sidecar container runs alongside your main application container in the same pod and extends its functionality without changing the application code.
+
 ![side_car](sidecar.jpg)
+
 * Sidecar Containers run concurrently with the primary container, allowing for parallel execution of tasks.
 ## use cases
 * Logging and monitoring
