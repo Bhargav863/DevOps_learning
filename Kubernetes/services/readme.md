@@ -88,6 +88,18 @@ spec:
       port: 80 # This port belongs to the service
       targetPort: sample-nginx # This port belongs to the container
 ```
+* Find the IP address of the node where the pod is created. And load it in browser, you will be able to see it.
+* To find, on which node pod is scheduled.
+  ```
+  kubectl get pods -o wide
+  ```
+  ```
+  http://Node_ip:port_num
+  ```
+* To find portnumber
+  ```
+  kubectl get svc -o wide
+  ```
 * This will open a port to access the application from outside.
 * **Use case:** When you want to access your application from outside the cluster without a LoadBalancer.
 * **Limitation:** Requires manually handling Node IPs and ports. Which is hard to manage.
@@ -120,7 +132,7 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     environment: dev
     app: frontend

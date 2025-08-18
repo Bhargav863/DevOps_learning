@@ -17,7 +17,7 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     environment: dev
     app: frontend
@@ -25,4 +25,4 @@ spec:
     - name: name-of-the-service-port
       protocol: "TCP"
       port: 80 # This port belongs to the service
-      targetPort: sample-nginx # This port belongs to the container
+      targetPort: 80 # This port belongs to the container
