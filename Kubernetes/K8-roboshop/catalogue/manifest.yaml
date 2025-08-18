@@ -50,7 +50,7 @@ spec:
       targetPort: 8080 # this port belongs to the container
 ---
 apiVersion: v1
-kind: COnfigMap
+kind: ConfigMap
 metadata:
   name: catalogue-config
   namespace: roboshop
