@@ -71,7 +71,7 @@
   ```
 * To login to the pod
   ```
-  kubectl exec -it pod_name --bash
+  kubectl exec -it pod_name -- bash
   ```
 * To see the logs of the pod
   ```
