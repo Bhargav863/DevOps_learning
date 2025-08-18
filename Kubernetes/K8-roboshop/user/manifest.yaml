@@ -52,6 +52,6 @@ metadata:
   name: user-config
   namespace: roboshop
 data:
-  REDIS_HOST: "redis" # keep true in double quotes
-  CATALOGUE_HOST: "catalogue"
-  CATALOGUE_PORT: "8080"
+  MONGO: "true" # keep true in double quotes
+  MONGO_URL: "mongodb://mongodb:27017/user"
+  REDIS_HOST: "redis"
