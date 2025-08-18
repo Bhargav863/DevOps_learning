@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+  namespace: roboshop
+  labels: # these labels belong to the deployment
+    app: shipping
+    tier: app
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # these labels should match with pod lables.
+      app: shipping
+      tier: app
+      project: roboshop
+  template:
+    metadata:
+      name: shipping
+      labels:
+        app: shipping
+        tier: app
+        project: roboshop
+    spec:
+      containers:
+        - image: bhargav863/shipping:1.0.0
+          name: shipping
+          envFrom:
+            - configMapRef:
+                name: shipping-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping
+  namespace: roboshop
+spec:
+  selector:
+    app: shipping
+    tier: app
+    project: roboshop
+  ports:
+    - name: shipping-port
+      port: 8080 # this belongs to the service
+      protocol: TCP
+      targetPort: 8080 # this port belongs to the container
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shipping-config
+  namespace: roboshop
+data:
+  DB_HOST: "mysql" # keep true in double quotes
+  CART_ENDPOINT: "cart:8080"
