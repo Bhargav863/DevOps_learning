@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cart
+  namespace: roboshop
+  labels: # these labels belong to the deployment
+    app: cart
+    tier: app
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # these labels should match with pod lables.
+      app: cart
+      tier: app
+      project: roboshop
+  template:
+    metadata:
+      name: cart
+      labels:
+        app: cart
+        tier: app
+        project: roboshop
+    spec:
+      containers:
+        - image: bhargav863/cart:1.0.0
+          name: cart
+          envFrom:
+            - configMapRef:
+                name: cart-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cart
+  namespace: roboshop
+spec:
+  selector:
+    app: cart
+    tier: app
+    project: roboshop
+  ports:
+    - name: cart-port
+      port: 8080 # this belongs to the service
+      protocol: TCP
+      targetPort: 8080 # this port belongs to the container
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cart-config
+  namespace: roboshop
+data:
+  REDIS_HOST: "redis"
+  CATALOGUE_HOST: "catalogue"
+  CATALOGUE_PORT: "8080"
