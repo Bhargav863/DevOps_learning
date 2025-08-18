@@ -12,14 +12,14 @@ spec:
   selector:
     matchLabels: # these labels should match with pod lables.
       app: catalogue
-      tier: db
+      tier: app
       project: roboshop
   template:
     metadata:
       name: catalogue
       labels:
         app: catalogue
-        tier: db
+        tier: app
         project: roboshop
     spec:
       containers:
@@ -41,7 +41,7 @@ metadata:
 spec:
   selector:
     app: catalogue
-    tier: db
+    tier: app
     project: roboshop
   ports:
     - name: catalogue-port
