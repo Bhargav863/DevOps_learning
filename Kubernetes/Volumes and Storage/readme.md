@@ -28,3 +28,22 @@ We have 2 types of volumes in Kubernetes cluster.These volumes are internal to c
 kubectl exec -it <pod_name> -c <cont_name> -- bash
 ```
 * This volume will be delted when the pod is deleted.
+
+#### hostPath
+
+* Like pods our servers will also writes lots of logs, those logs also needs to be analyzed and pushed to the elastic search/centralised logging area.When we want to ship our host logs to elasticsearch we can use this.
+* We use hostPath to push the server logs. This is the memory location on the underlying host.
+* This is useful in daemonset(creates pod on everynode). Daemonset will access logs through the hostpath.
+* Pods can get access to underlying server storage path through hostPath.
+* We should not use hostPath in application containers that can lead to security risks. Only use case is to ship host logs that should be in kube-system namespace.
+
+* Refer to the hostpath.yaml and observer how hostPath is configured and apply the manifest.
+  ```
+  kubectl apply -f hostpath.yaml
+  ```
+* Login to the container and check you will see all the directories inside /var/log in the pod as well.
+  ```
+  kubectl exec -it <pod_name> -- bash
+  ```
+  
+
