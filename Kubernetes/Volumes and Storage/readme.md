@@ -24,9 +24,9 @@ We have 2 types of volumes in Kubernetes cluster.These volumes are internal to c
   kubectl apply -f 01-emptydir.yaml
   ```
 * Login to the sidecar container and navigate to /var/log/nginx. you will see the nginx log file which means the container uses the same volume that the main container(nginx) using.
-```
-kubectl exec -it <pod_name> -c <cont_name> -- bash
-```
+  ```
+  kubectl exec -it <pod_name> -c <cont_name> -- bash
+  ```
 * This volume will be delted when the pod is deleted.
 
 #### hostPath
@@ -45,5 +45,5 @@ kubectl exec -it <pod_name> -c <cont_name> -- bash
   ```
   kubectl exec -it <pod_name> -- bash
   ```
-  
+
 
