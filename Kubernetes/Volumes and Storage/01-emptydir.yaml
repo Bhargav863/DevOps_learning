@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: filebeat-configmap
+data:
+  filebeat.yml: |
+    filebeat:
+      config:
+        modules:
+          path: /usr/share/filebeat/modules.d/*.yml
+          reload:
+            enabled: true
+      modules:
+      - module: nginx
+        access:
+          var.paths: ["/var/log/nginx/access.log*"]
+        error:
+          var.paths: ["/var/log/nginx/error.log*"]
+    output:
+      elasticsearch:
+        hosts: ["elasticsearch:9200"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-logs
+              mountPath: /var/log/nginx/
+        - name: filebeat-sidecar
+          image: docker.elastic.co/beats/filebeat:7.5.0
+          volumeMounts:
+            - name: nginx-logs
+              mountpath: /var/log/nginx/
+            - name: filebeat-config # here we mounting the second volume for filebeat configuration
+              mountpath: /usr/share/filebeat/filebeat.yml # specifes the path where the volume needs to be mounted
+              subpath: filebeat.yml # subpath ensures only filebeat.yaml will be mounted or else entire configmap will be mounted
+      volumes:
+        - name: nginx-logs # volume nginx will be created
+          emptyDir: {}
+        - name: filebeat-config # volume file-beat will be created from configMap
+          configMap:
+            - name: filebeat-configmap
+              items:
+                - key: filebeat.yml
+                  path: filebeat.yml
