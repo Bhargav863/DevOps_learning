@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  namespace: roboshop
+  labels: # these labels belong to the deployment
+    app: payment
+    tier: app
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # these labels should match with pod lables.
+      app: payment
+      tier: app
+      project: roboshop
+  template:
+    metadata:
+      name: payment
+      labels:
+        app: payment
+        tier: app
+        project: roboshop
+    spec:
+      containers:
+        - image: bhargav863/payment:1.0.0
+          name: payment
+          envFrom:
+            - configMapRef:
+                name: payment-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment
+  namespace: roboshop
+spec:
+  selector:
+    app: payment
+    tier: app
+    project: roboshop
+  ports:
+    - name: payment-port
+      port: 8080 # this belongs to the service
+      protocol: TCP
+      targetPort: 8080 # this port belongs to the container
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payment-config
+  namespace: roboshop
+data:
+  CART_HOST: catalogue
+  CART_PORT: "8080"
+  USER_HOST: "user"
+  USER_PORT: "8080"
