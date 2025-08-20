@@ -14,4 +14,4 @@ managedNodeGroups: # this is also completely managed by AWS
       - us-east-1a
     desiredCapacity: 3
     ssh:
-      publicKeyName: kubernetes # replace this with your keypair exists in AWS.
+      publicKeyName: devops # replace this with your keypair exists in AWS.

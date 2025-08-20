@@ -87,4 +87,12 @@ chmod 700 get_helm.sh
 
 validate $? "Helm Installation"
 
+apt install -y unzip curl &>>$LOGFILE
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip &>>$LOGFILE
+./aws/install
+aws --version
+
+validate $? "AWS cli installation"
+
 echo -e "$R Please logout and login again $N"
