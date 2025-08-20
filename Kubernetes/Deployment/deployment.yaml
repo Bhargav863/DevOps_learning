@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sample-pod
@@ -18,9 +18,9 @@ spec:
         environment: dev
         tier: frontend
         app: nginx
-  spec:
-    containers:
-      - image: nginx
-        name: sample-nginx
-        ports:
-          - containerPort: 80
+    spec:
+      containers:
+        - image: nginx
+          name: sample-nginx
+          ports:
+            - containerPort: 80
