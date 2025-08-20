@@ -98,6 +98,6 @@ kubectl kustomize \
 2. Instances should have access to EBS/EFS. Check Security groups in case of EFS.
 3. User should create PVC that can have storage class.
 4. SC in background create PV implicitly.
-
+5. Here storage class will create disk and PV automatically.
 
 

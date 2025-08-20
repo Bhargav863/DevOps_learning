@@ -41,4 +41,5 @@ Warning  FailedAttachVolume  52s   attachdetach-controller  Multi-Attach error f
 ```
 For example, I have 3 worker nodes and I asked for 10 pods out of 10 pods 3 went to one server,those are created because that server got access to EBS volume. I used access mode as ReadWriteOnce,i.e volume can be accessed by a single node at a time, but it can be accessed by multiple pods if pods are on some node.
 
+Check EBS in AWS, you will see it is in use.
 
