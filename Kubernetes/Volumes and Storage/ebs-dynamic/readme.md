@@ -26,4 +26,4 @@ Workaround in dynamic is
    tmpfs          tmpfs    3.9G     0  3.9G   0% /sys/firmware
    root@nginx-deployment-7b6956c67f-fgv8q:/#
    ```
-
+5) If you apply kubectl apply -f ebs-dynamic.yaml, ebs volume will be deleted automatically.
