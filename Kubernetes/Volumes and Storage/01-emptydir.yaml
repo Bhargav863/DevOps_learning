@@ -58,7 +58,7 @@ spec:
           emptyDir: {}
         - name: filebeat-config # volume file-beat will be created from configMap
           configMap:
-            - name: filebeat-configmap
-              items:
-                - key: filebeat.yml
-                  path: filebeat.yml
+            name: filebeat-configmap
+            items:
+              - key: filebeat.yml
+                path: filebeat.yml
