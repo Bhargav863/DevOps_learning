@@ -5,7 +5,7 @@ metadata:
 spec:
   storageClassName: ""
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce # If pods are created on multiple node, volume will be attached to pods on a single others will throw error as container creating.
   awsElasticBlockStore:
     fsType: ext4
     volumeID: vol-01ddb7d2941e747b6
@@ -31,7 +31,7 @@ metadata:
   labels: # these labels belong to deployment
     app: nginx
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels: # these labels should match with pod
       app: nginx
