@@ -28,7 +28,7 @@ spec:
               memory: 200Mi
           volumeMounts:
             - name: varlog
-              mountpath: /var/log/
+              mountPath: /var/log/
       volumes:
         - name: varlog
           hostPath:
