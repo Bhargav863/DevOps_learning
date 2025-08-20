@@ -49,7 +49,7 @@ spec:
           image: docker.elastic.co/beats/filebeat:7.5.0
           volumeMounts:
             - name: nginx-logs
-              mountpath: /var/log/nginx/
+              mountPath: /var/log/nginx/
             - name: filebeat-config # here we mounting the second volume for filebeat configuration
               mountPath: /usr/share/filebeat/filebeat.yml # specifes the path where the volume needs to be mounted
               subPath: filebeat.yml # subpath ensures only filebeat.yaml will be mounted or else entire configmap will be mounted
