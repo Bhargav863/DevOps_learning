@@ -51,8 +51,8 @@ spec:
             - name: nginx-logs
               mountpath: /var/log/nginx/
             - name: filebeat-config # here we mounting the second volume for filebeat configuration
-              mountpath: /usr/share/filebeat/filebeat.yml # specifes the path where the volume needs to be mounted
-              subpath: filebeat.yml # subpath ensures only filebeat.yaml will be mounted or else entire configmap will be mounted
+              mountPath: /usr/share/filebeat/filebeat.yml # specifes the path where the volume needs to be mounted
+              subPath: filebeat.yml # subpath ensures only filebeat.yaml will be mounted or else entire configmap will be mounted
       volumes:
         - name: nginx-logs # volume nginx will be created
           emptyDir: {}
