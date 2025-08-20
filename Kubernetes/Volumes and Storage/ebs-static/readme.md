@@ -39,5 +39,6 @@ root@nginx-deployment-7bf8f57466-24vv6:/usr/share/nginx/html# exit
 ```
 Warning  FailedAttachVolume  52s   attachdetach-controller  Multi-Attach error for volume "ebs-static" Volume is already used by pod(s) nginx-deployment-7bf8f57466-24vv6
 ```
+For example, I have 3 worker nodes and I asked for 10 pods out of 10 pods 3 went to one server,those are created because that server got access to EBS volume. I used access mode as ReadWriteOnce,i.e volume can be accessed by a single node at a time, but it can be accessed by multiple pods if pods are on some node.
 
 
