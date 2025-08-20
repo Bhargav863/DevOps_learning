@@ -100,4 +100,11 @@ kubectl kustomize \
 4. SC in background create PV implicitly.
 5. Here storage class will create disk and PV automatically.
 
+**EBS VS EFS**
+* EBS is a block storage and EFS is a network storage.
+* EBS is like our computer hard disk and EFS is like Google drive.
+* EBS cannot scale automatically, EFS can scale automatically.
+* EBS volumes are typically attached to a single EC2 instance at a time. Where EFS file systems can be accessed by multiple EC2 instances concurrently, making it ideal for shared storage needs.
+  
+
 
