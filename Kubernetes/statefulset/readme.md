@@ -21,4 +21,5 @@ spec:
 * It will do the nslookup of the service, then it will show the all the pod IP's available and sends a request to update the details.
 
 **In deployment "nslookup service_name" will give you the IP address of the service**
+
 **In Statefulset "nslookup sevice_name" will give you the IP addresses of all the pods**
