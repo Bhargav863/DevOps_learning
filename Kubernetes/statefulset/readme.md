@@ -5,6 +5,9 @@
 nginx 0 is success then create nginx1 and nginx 1 is success then create nginx2.
 nginx 0 is success then create nginx1 and nginx 1 is succes 
 * Statefulset preserve the network identity of the pod. Pods get a DNS hostname based on their name and StatefulSet.
+  ```
+  nginx-0.nginx.default.svc.cluster.local
+  ```
 * Statefulset keeps the pod identity same for communication. Even though you restart the pod, the name won't change.
 * Deployment will use service, but for stateful set it is mandatory to use headless service.
 
