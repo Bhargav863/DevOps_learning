@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  namespace: roboshop
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+    tier: frontend
+    project: roboshop
+  ports:
+    - name: web-port
+      port: 80 # this belongs to the service
+      protocol: TCP
+      targetPort: 80 # this port belongs to the container

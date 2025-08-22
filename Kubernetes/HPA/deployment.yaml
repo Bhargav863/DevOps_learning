@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpa-deploy
+  namespace: roboshop
+  labels: # these labels belong to the deployment
+    app: web
+    tier: frontend
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # these labels should match with pod lables.
+      app: web
+      tier: frontend
+      project: roboshop
+  template:
+    metadata:
+      name: web
+      labels:
+        app: web
+        tier: frontend
+        project: roboshop
+    spec:
+      volumes:
+        - name: nginx-conf
+          configMap:
+            name: web-config
+            items:
+              - key: nginx.conf
+                path: nginx.conf
+      containers:
+        - image: bhargav863/web:1.0.0
+          name: web
+          resources:
+            requests:
+              memory: "68Mi"
+              cpu: "25m"
+            limits:
+              memory: "100Mi"
+              cpu: "200m"
+          volumeMounts:
+            - name: nginx-conf # name of the volume you created above
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
