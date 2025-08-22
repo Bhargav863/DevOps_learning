@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  labels: # these labels belong to deployment
+    app: app1
+spec:
+  replicas: 1
+  selector:
+    matchLabels: # these labels should match with pod
+      app: app1
+  template: # this is the pod definition
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+        - name: app1
+          image: joindevops/app1:v1
+          ports:
+            - containerPort: 80
+---
+
