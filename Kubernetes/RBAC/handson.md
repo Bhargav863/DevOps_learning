@@ -20,15 +20,15 @@ To test RBAC we need to a user, so first create a new user. Below is the step-by
     apiVersion: certificates.k8s.io/v1
     kind: CertificateSigningRequest
     metadata:
-    name: tony
+      name: tony
     spec:
-    request: <base64_encoded_csr>
-    signerName: kubernetes.io/kube-apiserver-client
-    expirationSeconds: 86400  # one day
-    usages:
-    - digital signature
-    - key encipherment
-    - client auth
+      request: <base64_encoded_csr>
+      signerName: kubernetes.io/kube-apiserver-client
+      expirationSeconds: 86400  # one day
+      usages:
+        - digital signature
+        - key encipherment
+        - client auth
     EOF
     ```
  5) csr status
@@ -76,3 +76,92 @@ To test RBAC we need to a user, so first create a new user. Below is the step-by
     This error occurs because we haven’t assigned any permissions to the “tony” user yet; we’ve only created the user.
 
 Now, let’s proceed to create new roles and role bindings and associate them with the “tony” user using the following steps.
+
+Let’s create RBAC rules and apply to the above user:
+**Example 1: Allow read-only access to pods in specific namespace**
+  1) Create a file named pod-reader-role.yaml with the following content:
+        ```
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: Role
+        metadata:
+        namespace: kube-system
+        name: pod-reader
+        rules:
+         - apiGroups: [""]
+           resources: ["pods"]
+           verbs: ["get", "list"]
+        ```
+  2) Apply the role
+     ```
+     kubectl apply -f pod-reader-role.yaml
+     ```
+     This Role allows getting and listing pods in the kube-system namespace.
+  3) Create a file named tony-pod-reader-rolebinding.yaml with the following content:
+        ```
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: RoleBinding
+        metadata:
+            name: tony-pod-reader
+            namespace: kube-system
+        subjects:
+          - kind: User
+            name: tony
+            apiGroup: rbac.authorization.k8s.io
+        roleRef:
+            kind: Role
+            name: pod-reader
+            apiGroup: rbac.authorization.k8s.io
+        ```
+  4) Apply the rolebinding
+     ```
+     kubectl apply -f tony-pod-reader-rolebinding.yaml
+     ```
+This RoleBinding binds the “tony” user to the “pod-reader” Role in the kube-system namespace.
+Now, the “tony” user should be able to list and get pods in the kube-system namespace using the provided kubeconfig i.e., ~/.kube/config-tony.
+We’ve set up a new role and role binding for the user “tony”. Now, let’s try accessing the pods in the kube-system namespace with the following command.
+
+ ```
+ kubectl --kubeconfig ~/.kube/config-tony get pods -n kube-system
+ ```
+ We’ve successfully listed the pods in the kube-system namespace. However, if you attempt to view the nodes inside the cluster, you’ll receive a Forbidden error.
+
+**Example 2: Allow access view the nodes in the cluster**
+  1) Create a file named node-list-clusterrole.yaml with the following content:
+    ```
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+    # "namespace" omitted since ClusterRoles are not namespaced
+      name: node-list-clusterrole
+    rules:
+     - apiGroups: ["v1","apps/v1",""]
+       resources: ["secrets","nodes","namespaces","persistentvolumes","deployments"] # here i am providing some extra access.
+       verbs: ["get", "watch", "list"]
+    ```
+ 2) Apply the cluster role
+    ```
+    kubectl apply -f node-list-clusterrole.yaml
+    ```
+ 3) Create a file named tony-node-lister-clusterrolebinding.yaml with the following content:
+    ```
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: tony-node-lister-clusterrolebinding
+    subjects:
+      - kind: User
+        name: tony # Name is case sensitive
+        apiGroup: rbac.authorization.k8s.io
+    roleRef:
+        kind: ClusterRole
+        name: node-list-clusterrole
+        apiGroup: rbac.authorization.k8s.io
+ 4) Apply the manifest
+    ```
+    kubectl apply -f tony-node-lister-clusterrolebinding.yaml
+    ```
+Now list the nodes in the cluster
+```
+kubectl --kubeconfig ~/.kube/config-tony get nodes
+```
+We’ve successfully listed the nodes in all namespaces. However, if you attempt to access other resources(other than pods) in any namespace, you’ll receive a Forbidden error.

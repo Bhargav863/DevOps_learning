@@ -27,9 +27,9 @@ metadata:
   namespace: roboshop
   name: pod-manager
 rules:
-- apiGroups: [""] # indicates the core api group
-  resources: ["pods"]
-  verbs: ["get", "list", "create", "delete"]
+  - apiGroups: [""] # indicates the core api group
+    resources: ["pods"]
+    verbs: ["get", "list", "create", "delete"]
 ```
 * Here the role pod-manager allows the user assigned with this role to create, delete and list the pods
 
@@ -45,16 +45,16 @@ metadata:
   namespace: roboshop
 subjects:
 # You can specify more than one "subject"
-- kind: User
-  name: tony # "name" is case sensitive
-  apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: tony # "name" is case sensitive
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   # "roleRef" specifies the binding to a Role / ClusterRole
   kind: Role #this must be Role or ClusterRole
   name: pod-manager # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io
 ```
-This role binding (pod-manager-binding) binds the **pod-manager** role to the **tony** user within the **roboshop** namespace.
+* This role binding (pod-manager-binding) binds the **pod-manager** role to the **tony** user within the **roboshop** namespace.
 
 ## Cluster Roles & Cluster Role Bindings:
 
@@ -69,9 +69,9 @@ metadata:
   # "namespace" omitted since ClusterRoles are not namespaced
   name: roboshop-cluster-reader
 rules:
-- apiGroups: ["v1","apps/v1",""]
-  resources: ["secrets","nodes","namespaces","persistentvolumes","deployments"]
-  verbs: ["get", "watch", "list"]
+  - apiGroups: ["v1","apps/v1",""]
+    resources: ["secrets","nodes","namespaces","persistentvolumes","deployments"]
+    verbs: ["get", "watch", "list"]
 ```
 
 This role allows the ops-team to view the nodes, namespaces, deployments, secrets etc.,
@@ -85,9 +85,9 @@ kind: ClusterRoleBinding
 metadata:
   name: roboshop-cluster-binding
 subjects:
-- kind: Group
-  name: Ops-team # Name is case sensitive
-  apiGroup: rbac.authorization.k8s.io
+ - kind: Group
+   name: Ops-team # Name is case sensitive
+   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: roboshop-cluster-reader
