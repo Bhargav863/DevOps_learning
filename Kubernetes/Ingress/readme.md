@@ -55,6 +55,7 @@ Kubernetes will automatically create the classic loadbalancer. Classic loadbalan
 Application loadbalancer have many advantages than Classic Load Balancer. It is highly intelligent & multiple routing mechanisms.
 
 hostpath --> amazon.com,flikart.com
+
 pathbased --> amazon.com/books, flipkart.com/payment.
 
 
