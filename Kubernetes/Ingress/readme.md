@@ -48,5 +48,12 @@ Exposing cluster services externally using Kubernetes Ingress is a multi-step pr
    LoadBalancer: Managed at each service level.
    IngressController: Centralized SSL/TLS termination.
 
+## Note
+
+Kubernetes will automatically create the classic loadbalancer. Classic loadbalancer is legacy load balancer. 
+
+Application loadbalancer have many advantages than Classic Load Balancer. It is highly intelligent & multiple routing mechanisms.
+
+
 
 
