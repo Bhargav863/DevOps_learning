@@ -65,6 +65,8 @@ Whenever a eks cluster is created, there is a configMAP aws-auth will create in 
    ```
 4) Create the kubeconfig now for that user
    ```
+   aws eks update-kubeconfig --region region-code --name my-cluster
+   ```
 5) Now try to list the pods it will work.
 6) Try to delete the pods, you will be able to delete.
 7) try to list the nodes, you will get forbidden error because nodes is cluster level resource.
