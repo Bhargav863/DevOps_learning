@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sample-pod
+  namespace: roboshop
   labels: # These labels are deployment labels, every k8 resource should have lables.
     environment: dev
     app: frontend

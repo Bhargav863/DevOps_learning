@@ -1,0 +1,52 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: roboshop-admin
+  namespace: roboshop
+rules:
+  - apiGroups: ["*"] # Indicates core api groups
+    resources: ["*"]
+    verbs: ["*"] # actions on resources create,delete,update,read
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: roboshop-admin-binding
+  namespace: roboshop
+subjects:
+  - kind: User
+    name: Bhargav
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: roboshop-admin
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  # "namespace" omitted since ClusterRoles are not namespaced
+  name: node-list-clusterrole
+rules:
+  - apiGroups: ["v1", "apps/v1", ""]
+    resources: [
+        "secrets",
+        "nodes",
+        "namespaces",
+        "persistentvolumes",
+        "deployments",
+      ] # here i am providing some extra access.
+    verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: Bhargav-node-lister-clusterrolebinding
+subjects:
+  - kind: User
+    name: Bhargav # Name is case sensitive
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: node-list-clusterrole
+  apiGroup: rbac.authorization.k8s.io
