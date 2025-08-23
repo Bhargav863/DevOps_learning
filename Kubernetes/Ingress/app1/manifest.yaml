@@ -35,5 +35,5 @@ spec:
     - name: name-of-the-service-port
       protocol: "TCP"
       port: 80 # This port belongs to the service
-      targetPort: sample-nginx # This port belongs to the container
+      targetPort: 80 # This port belongs to the container
 
