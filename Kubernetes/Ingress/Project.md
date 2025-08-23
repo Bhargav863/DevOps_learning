@@ -62,3 +62,10 @@ Create an ingress resource for ALB, refer to ingress.yaml
 ```
 kubectl apply -f ingress.yaml
 ```
+
+Note:
+Check ALB will be created in your AWS account.
+Check the target groups are registered or not. 
+Load the url in the browser. In this case app1.devopslearner.space.
+
+Follow the same steps for app2 and observer it uses the same ALB, like that we can attach single ALB to any number of projects.
