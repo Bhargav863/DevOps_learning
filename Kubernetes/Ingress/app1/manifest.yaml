@@ -4,6 +4,7 @@ metadata:
   name: app1
   labels: # these labels belong to deployment
     app: app1
+    tier: frontend
 spec:
   replicas: 1
   selector:
@@ -16,8 +17,21 @@ spec:
     spec:
       containers:
         - name: app1
-          image: joindevops/app1:v1
+          image: bhargav863/app1:v1
           ports:
             - containerPort: 80
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-service
+spec:
+  selector:
+    app: app1
+    tier: frontend
+  ports:
+    - name: name-of-the-service-port
+      protocol: "TCP"
+      port: 80 # This port belongs to the service
+      targetPort: sample-nginx # This port belongs to the container
 
