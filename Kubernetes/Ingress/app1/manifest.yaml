@@ -10,10 +10,12 @@ spec:
   selector:
     matchLabels: # these labels should match with pod
       app: app1
+      tier: frontend
   template: # this is the pod definition
     metadata:
       labels:
         app: app1
+        tier: frontend
     spec:
       containers:
         - name: app1
