@@ -56,3 +56,9 @@ Install the AWS Load Balancer Controller
    ```
    kubectl get deployment -n kube-system aws-load-balancer-controller
    ```
+
+Create an ingress resource for ALB, refer to ingress.yaml
+
+```
+kubectl apply -f ingress.yaml
+```
