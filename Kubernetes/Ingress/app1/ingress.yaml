@@ -17,6 +17,6 @@ spec:
             pathType: prefix
             backend:
               service:
-                name: ingress-service
+                name: app1-service
                 port:
                   number: 80
