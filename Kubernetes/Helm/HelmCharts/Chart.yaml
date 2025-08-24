@@ -1,0 +1,8 @@
+# Entire chart.yaml is the metadata of your application
+apiVersion: v2
+name: nginx # Name of the chart
+version: 0.0.1 # chart version
+description: This the helm chart of the nginx
+maintainers:
+  - name: Bhargav # who is maintaining this chart
+appVersion: 1.0.0 # This version belongs to the application.
