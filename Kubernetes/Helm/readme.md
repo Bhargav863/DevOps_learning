@@ -44,6 +44,38 @@ A chart is organized as a collection of files inside of a directory.
   templates/NOTES.txt # OPTIONAL: A plain text file containing short usage notes
 ```
 
+To list the charts
+```
+helm list
+```
+
+## Helm as a kubernetes package manager
+
+1) In general, to install a package. We will run 
+      yum install nginx -y
+      It will fecth the nginx package from internet and install it on our server.
+2) In kubernetes, if you need to know
+     How to create a image and how to push it.
+     You need to know how to run the manifest
+3) I want to install efs drivers to my k8s cluster
+   * Image should be available --> Images are available in internet
+   * You should know to how to run the manifest
+4) Using helm, you will add the repo in your local install it.
+   ```
+   helm repo add <url>
+   helm repo add aws-efs-csi-driver https://kubernetes-sigs.github.io/aws-efs-csi-driver/
+   ```
+   ```
+   helm repo update
+   ```
+   Install a release of the driver using the Helm chart.
+   ```
+   helm upgrade --install aws-efs-csi-driver --namespace kube-system aws-efs-csi-driver/aws-efs-csi-driver
+   ```
+5) Using helm you can install any 3rd party applications into your kubernetes cluster.
+
+
+     
      
 
      
