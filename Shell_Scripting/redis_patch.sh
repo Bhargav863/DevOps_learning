@@ -1,8 +1,8 @@
 #!/bin/bash
 # Patching automation script for Redis
 
-AWX_TEMPLATE_URL="https://awx.corp.cox.com/api/v2/job_templates/1857/launch/"
-AWX_BASE_URL="https://awx.corp.cox.com"
+AWX_TEMPLATE_URL="https://example.awx.com/api/v2/job_templates/1857/launch/"
+AWX_BASE_URL="https://example.awx.com"
 AWX_PATCH_JOB_TEMPLATE_ID="1857"
 AWX_OAUTH_TOKEN=$1
 ordered_nodes=() # An empty array to store nodes after ordered to patch master at last
