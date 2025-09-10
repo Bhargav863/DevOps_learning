@@ -12,5 +12,5 @@
       ansible.builtin.debug:
         msg: |
           Third port is {{ port_nums[2] }}
-          Third user in the list is {{ user[2] }}
+          Third user in the list is {{ users[2] }}
       
