@@ -18,3 +18,15 @@ Different ways to specify variables in ansible
      * Example: refer to vars_from_files.yml and also understand how varibles are defining as lists and dictionaries.
 5) Variables from the command prompt.
    * Example: refer to the playbook vars_from_cmd.yaml
+6) variables from inventory.
+   * refer to inventory file and vars_from_inv.yaml file
+
+Variables precedence:
+-------------------
+1) command line variables.
+2) From task level
+3) From the files
+4) From the prompt
+5) Play level variables
+6) From inventory level
+7) From Roles
