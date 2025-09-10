@@ -1,0 +1,14 @@
+- name: read the variables from the command prompt during runtime
+  hosts: localhost 
+  vars_prompt:
+     - name: username
+       prompt: Please enter your username
+       private: false # private is false, so that you can see your input on your screen as you type it, by default it's hidden
+     - name: password
+       prompt: please enter your password
+       private: true # you won't see the password you are entering
+  tasks:
+    - name: Greet the username
+      ansible.builtin.debug:
+         msg: Hello {{ username }}
+    
