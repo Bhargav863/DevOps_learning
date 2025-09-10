@@ -19,7 +19,7 @@
         msg: The group of the user {{ user_vars['bob']['username'] }} is {{ user_vars['bob']['group'] }} and the shell is {{ user_vars['bob']['shell'] }}
 # this is one way of accessing the values from the dictionary
     - name: print the group and shell for user lisa
-      ansible.buitlin.debug:
+      ansible.builtin.debug:
          msg: The group of the user {{ user_vars.lisa.username }} is {{ user_vars.lisa.group }} and the shell is {{ user_vars.lisa.shell }}
 # This is another way of accessing elements from the dictionary
           
