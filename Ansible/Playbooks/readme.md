@@ -22,5 +22,14 @@
      1) Target section: - Defines hosts against which tasks are need to be executed.
      2) variable section:- Defines variables .
      3) Task section :- List of modules we need to run in order.
+
+## ansible.cfg file is the primary configuration file for Ansible, used to customize various aspects of its behavior. It allows users to define settings and parameters that influence how Ansible operates, from connection details to privilege escalation and output formatting.
+
+Ansible searches for ansible.cfg in a specific order:
+ 1) ANSIBLE_CONFIG environment variable (if set)
+ 2) ansible.cfg in the current working directory
+ 3) .ansible.cfg in the user's home directory
+ 4) /etc/ansible/ansible.cfg (global configuration)
+Settings in higher-precedence files override those in lower-precedence ones.
         
 
