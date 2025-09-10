@@ -1,0 +1,13 @@
+- name: Playbook to install and start nginx
+  hosts: all 
+  tasks:
+    - name: Install nginx
+      ansible.builtin.apt:
+        name: nginx
+        state: latest
+    - name: Enable and start the service nginx
+      ansible.builtin.service:
+        name: nginx
+        enabled: yes
+        state: started
+      
