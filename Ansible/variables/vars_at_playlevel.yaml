@@ -9,3 +9,13 @@
          msg: |
              {{ fav_color }} is my favourite colour
              {{ fav_food }} is my favourite food.
+# override the play level variables at the task level
+    - name: override the play level variables and define variables at task level 
+      vars:
+        - fav_food: Chicken Biryani
+          fav_sport: cricket
+      ansible.builtin.debug:
+        msg: |
+          {{ fav_color }} is my favourite colour
+          {{ fav_food }} is my favourite food
+          {{ fav_sport }} is my favourite fav_sport
