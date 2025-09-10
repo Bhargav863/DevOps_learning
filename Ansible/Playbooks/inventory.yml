@@ -5,3 +5,6 @@
 [roboshop:children]
 dev
 qa
+
+[roboshop:vars]
+course=ansible
