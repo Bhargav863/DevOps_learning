@@ -11,4 +11,6 @@
     - name: Greet the username
       ansible.builtin.debug:
          msg: Hello {{ username }}
+# ansible command to run this playbook is 
+# ansible-playbook vars_from-cmd_prompt.yaml
     

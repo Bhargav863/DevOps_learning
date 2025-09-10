@@ -8,4 +8,10 @@ Different ways to specify variables in ansible
 2) Define variables at task level and override the playlevel variables.
    * Example: Refer to the playbook vars_at_playlevel.yaml for the 1st and 2nd way of defining.
 3) variables from the command prompt.
-   
+   * Example: refer to the playbook vars_from_cmd_prompt.yaml
+4) Variables from file.
+   ```
+   vars_files:
+       - variablefile.yml
+   ```
+     * variablefile.yml is the external file to specify the varibales.
