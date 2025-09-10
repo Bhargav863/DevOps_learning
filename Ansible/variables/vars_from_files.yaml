@@ -1,0 +1,16 @@
+- name: Variables from files
+  hosts: localhost
+  vars_files:
+    - variablefile.yml
+  tasks: 
+    - name: print all the port numbers and users. variables from list
+      ansible.builtin.debug:
+        msg: |
+          All the ports are {{ port_nums }}
+          All the users are {{ users }}
+    - name: print particular port number and user using index
+      ansible.builtin.debug:
+        msg: |
+          Third port is {{ port_nums[2] }}
+          Third user in the list is {{ user[2] }}
+      
