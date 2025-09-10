@@ -1,0 +1,11 @@
+- name: Variables at task level
+  hosts: localhost
+  vars:
+    - fav-color: black
+      fav-food: Biryani
+  tasks:
+    - name: inherit the values from play
+      ansible.builting.debug:
+         msg: |
+           {{ fav-color }} is my favourite colour
+           {{ fav-food }} is my favourite food.
