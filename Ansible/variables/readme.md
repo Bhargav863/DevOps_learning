@@ -6,4 +6,4 @@ Ansible uses variables which are defined previously to enable more flexibility i
 Different ways to specify variables in ansible
 1) Define variables at play level.
 2) Define variables at task level and override the playlevel variables.
-   Example: Refer to the playbook vars_at_playlevel.yaml
+   * Example: Refer to the playbook vars_at_playlevel.yaml
