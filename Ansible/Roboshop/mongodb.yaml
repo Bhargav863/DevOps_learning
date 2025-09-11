@@ -9,11 +9,14 @@
       loop:
        - { name: 'gnupg', state: 'present' }
        - { name: 'curl', state: 'present' }
-    - name: Import the Mongodb public gpg key
+    - name: Download and install MongoDB public GPG key (if not already present)
       ansible.builtin.shell: |
-           curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
-           sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
-           --dearmor
+          curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+          gpg --dearmor | sudo tee /usr/share/keyrings/mongodb-server-7.0.gpg > /dev/null
+      args:
+        executable: /bin/bash
+        creates: /usr/share/keyrings/mongodb-server-7.0.gpg
+
     - name: create the list file
       ansible.builtin.copy:
         src: mongodb.repo
