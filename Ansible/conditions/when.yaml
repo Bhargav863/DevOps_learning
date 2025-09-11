@@ -19,7 +19,7 @@
         ansible_distribution == "Ubuntu" and ansible_os_family == "Debian"
     - name: print the ipv4 address 
       ansible.builtin.debug:
-        msg: Hostname of the server is {{ ansible_all_ipv4_addresses }}
+        msg: IP address of the server is {{ ansible_all_ipv4_addresses }}
       when: 
         (ansible_distribution == "Ubuntu" and ansible_os_family == "Debian") or
         (ansible_user_shell == "/bin/bash")
