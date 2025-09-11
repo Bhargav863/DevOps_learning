@@ -31,5 +31,7 @@ Ansible searches for ansible.cfg in a specific order:
  3) .ansible.cfg in the user's home directory
  4) /etc/ansible/ansible.cfg (global configuration)
 Settings in higher-precedence files override those in lower-precedence ones.
+
+* "register" keyword is used to store the output of a command to into the variable. which we can use it throughout the playbook. 
         
 
