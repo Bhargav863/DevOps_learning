@@ -11,3 +11,7 @@ Ex:- Refer to when.yaml file
   ```
   ansible-playbook conditions/when.yaml
   ```
+Assignment
+----------
+* Take username as variable, and then dynamically check user exists or not then create.
+* check a directory exists or not, if not exists create it

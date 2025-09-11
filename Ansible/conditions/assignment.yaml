@@ -1,0 +1,21 @@
+- name: check if user exists or not, if user doesn't exist create user
+  hosts: all
+  become: true
+  vars:
+    - user: roboshop
+  tasks:
+    - name: Check if user exists
+      ansible.builtin.command: id {{ user }}
+      register: output
+      ignore_errors: true
+# when user doesn't exist, ansible will treat it as a error and comes out of the script.
+# to not come out even though there is an error, you can use ignore_errors: true
+    - name: Create the user
+      ansible.builtin.user:
+         name: "{{ user }}"
+         create_home: yes
+         shell: /bin/bash
+      when: output.rc != 0
+
+
+    
