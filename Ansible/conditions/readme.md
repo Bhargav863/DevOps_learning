@@ -1,0 +1,8 @@
+In Ansible, when condition is used to control the execution of tasks based on whether a specified condition is met. It functions similarly to an if statement in other programming languages, allowing tasks to run only when the condition evaluates to True.
+```
+- name: Example task with a condition
+  debug:
+    msg: "This message will only print if the condition is true."
+  when: some_variable == "expected_value"
+```
+Ex:- Refer to when.yaml file

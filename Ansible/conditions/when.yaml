@@ -1,0 +1,14 @@
+# when condition is used to control the execution of tasks based on whether a specified condition is met. 
+# It functions similarly to an if statement in other programming languages, allowing tasks to run only when the condition evaluates to True.
+- name: This Example demonstrates the usage of When condition using ansible_facts
+  hosts: all
+  become: true
+  tasks:
+    - name: print the distribution of the server
+      ansible.builtin.debug:
+        msg: This is ubuntu server
+      when: ansible_distribution == "Ubuntu"
+    - name: Print the os-family of the server
+      ansible.builtin.debug:
+        msg: This is belong {{ ansible_os_family }} family
+      when: ansible_os_family == "Debian"
