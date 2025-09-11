@@ -1,0 +1,11 @@
+# using when condition with the loops
+- name: print the even numbers
+  hosts: localhost
+  vars:
+   num: [1,2,3,4,5,6,7,8,9]
+  tasks:
+    - name: print all the even numbers in the list
+      ansible.builtin.debug:
+        msg: "{{ item }} is an even number.""
+      loop: {{ num }}
+      when: item%2 == 0
