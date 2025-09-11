@@ -1,0 +1,13 @@
+- name: loop with the list of Maps
+  hosts: all
+  become: yes
+  tasks:
+    - name: install specified packages
+      ansible.builtin.apt:
+         name: {{ item.name }}
+         state: {{ item.state }}
+      # list of map
+      loop:
+       - { name: 'nginx', state: 'present' }
+       - { name: 'postfix', state: 'present' }
+      
