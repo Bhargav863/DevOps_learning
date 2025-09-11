@@ -1,0 +1,40 @@
+- name: Configure the Mongodb server
+  hosts: dev
+  become: true
+  tasks:
+    - name: Install gnupg curl
+      ansible.builtin.apt:
+         name: "{{ item.name }}"
+         state: "{{ item.state }}"
+      loop:
+       - { name: 'gnupg', state: 'present' }
+       - { name: 'curl', state: 'present' }
+    - name: Import the Mongodb public gpg key
+      ansible.builtin.command: |
+           curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+           sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+           --dearmor
+    - name: create the list file
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/apt/sources.list.d/mongodb-org-7.0.list
+    - name: Update repositories cache and install mongodb-org package
+      ansible.builtin.apt:
+        name: mongodb-org
+        state: present
+        update_cache: yes
+    - name: Start and enable the mongodb
+      ansible.builtin.service:
+         name: mongod
+         state: started
+         enabled: yes
+    - name: Replace bind address in configuration file
+      ansible.builtin.lineinfile:
+         path: /etc/mongod.conf
+         regexp: '^bind 127\.0\.0\.0$'
+         line: 'bind 0.0.0.0'
+    - name: restart the mongod service
+      ansible.builtin.service:
+         name: mongod
+         state: restarted
+      
