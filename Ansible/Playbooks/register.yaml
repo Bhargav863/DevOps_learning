@@ -8,4 +8,4 @@
       register: server_uptime
     - name: print the uptime of the server
       ansible.builtin.debug:
-        msg: {{ server_uptime }}
+        msg: "{{ server_uptime.stdout }}"
