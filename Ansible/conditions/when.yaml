@@ -12,3 +12,14 @@
       ansible.builtin.debug:
         msg: This is belong {{ ansible_os_family }} family
       when: ansible_os_family == "Debian"
+    - name: print the hostname
+      ansible.builtin.debug:
+        msg: Hostname of the server is {{ ansible_hostname }}
+      when: 
+        ansible_distribution == "Ubuntu" and ansible_os_family == "Debian"
+    - name: print the ipv4 address 
+      ansible.builtin.debug:
+        msg: Hostname of the server is {{ ansible_all_ipv4_addresses }}
+      when: 
+        (ansible_distribution == "Ubuntu" and ansible_os_family == "Debian") or
+        (ansible_user_shell == "/bin/bash")
