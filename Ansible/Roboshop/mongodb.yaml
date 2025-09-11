@@ -35,7 +35,7 @@
       ansible.builtin.replace:
          path: /etc/mongod.conf
          regexp: '127.0.0.0'
-         line: '0.0.0.0'
+         replace: '0.0.0.0'
     - name: restart the mongod service
       ansible.builtin.service:
          name: mongod
