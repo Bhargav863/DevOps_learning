@@ -6,6 +6,6 @@
   tasks:
     - name: print all the even numbers in the list
       ansible.builtin.debug:
-        msg: "{{ item }} is an even number.""
+        msg: "{{ item }} is an even number."
       loop: {{ num }}
       when: item%2 == 0
