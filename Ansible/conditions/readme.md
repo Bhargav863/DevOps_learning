@@ -17,3 +17,18 @@ Take username as variable, and then dynamically check user exists or not then cr
   * Refer to 01-assignment.yaml
 check a directory exists or not, if not exists create it
   * Refer to 02-assignment.yaml
+
+## LOOPS
+Loops in ansible are set of instructions that automates the repeated tasks and making it easier to perform the same action multiple times without manual repetition.
+
+```
+- name: Install multiple packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - httpd
+    - nginx
+    - mariadb-server
+```
+item is the variable to loop through the values inside the loop.
