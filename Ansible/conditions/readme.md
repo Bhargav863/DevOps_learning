@@ -13,5 +13,7 @@ Ex:- Refer to when.yaml file
   ```
 Assignment
 ----------
-* Take username as variable, and then dynamically check user exists or not then create.
-* check a directory exists or not, if not exists create it
+Take username as variable, and then dynamically check user exists or not then create.
+  * Refer to 01-assignment.yaml
+check a directory exists or not, if not exists create it
+  * Refer to 02-assignment.yaml

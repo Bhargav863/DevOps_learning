@@ -1,0 +1,9 @@
+- name: check whether the directory on the server exists if not create it.
+  hosts: all
+  become: yes
+  tasks:
+    - name: create a directory if it doesn't exist
+      ansible.builtin.file:
+         path: /tmp/app
+         state: directory
+         mode: '0755'
