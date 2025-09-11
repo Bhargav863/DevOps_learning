@@ -6,3 +6,8 @@ In Ansible, when condition is used to control the execution of tasks based on wh
   when: some_variable == "expected_value"
 ```
 Ex:- Refer to when.yaml file
+
+* ansible.cfg is placed under the Ansible directory. Go that directory and run the ansible playbook.
+  ```
+  ansible-playbook conditions/when.yaml
+  ```
