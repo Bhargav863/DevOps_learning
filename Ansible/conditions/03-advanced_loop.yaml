@@ -4,8 +4,8 @@
   tasks:
     - name: install specified packages
       ansible.builtin.apt:
-         name: {{ item.name }}
-         state: {{ item.state }}
+         name: "{{ item.name }}"
+         state: "{{ item.state }}"
       # list of map
       loop:
        - { name: 'nginx', state: 'present' }
