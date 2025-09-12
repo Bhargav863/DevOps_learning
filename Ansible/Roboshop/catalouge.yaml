@@ -5,7 +5,7 @@
   become: yes
   tasks:
     - name: setup the nodejs repositories
-      ansible.builtin.shell: "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\"
+      ansible.builtin.shell: "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -"
     - name: Install the nodejs
       ansible.builtin.apt:
         name: nodejs
@@ -21,7 +21,7 @@
       ignore_errors: true
     - name: Create the user if not present
       ansible.builtin.user:
-         name: {{ user }}
+         name: "{{ user }}"
          shell: /sbin/nologin
          system: true
          home: /app
@@ -29,11 +29,12 @@
     - name: Download the catalogue files into /tmp directory
       ansible.builtin.get_url:
          url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
-         dest: /tmp
+         dest: /tmp/catalogue-v3.zip
     - name: unarchive the catalogue files in /app directory
       ansible.builtin.unarchive:
-         src: catalogue-v3.zip
+         src: /tmp/catalogue-v3.zip
          dest: /app
+         remote_src: yes
     - name: Install dependencies
       ansible.builtin.command: npm install
       args:
@@ -41,7 +42,7 @@
     - name: copy catalogue service file to systemd directory
       ansible.builtin.copy:
          src: catalogue.service
-         path: /etc/systemd/system/catalogue.service
+         dest: /etc/systemd/system/catalogue.service
     - name: reload the daemon
       ansible.builtin.systemd_service:
          daemon_reload: true
@@ -78,6 +79,6 @@
       ansible.builtin.shell: mongosh --host mongo < /app/db/master-data.js
     - name: start the catalogue service
       ansible.builtin.service:
-         service: catalogue
+         name: catalogue
          state: restarted
         
