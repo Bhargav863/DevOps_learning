@@ -35,7 +35,7 @@
       ansible.builtin.replace:
          path: /etc/mongod.conf
          regexp: '^(.*bindIP:\s*)127\.0\.0\.0'
-         replace: '\10.0.0.0'
+         replace: '\1 0.0.0.0'
 
     - name: restart the mongod service
       ansible.builtin.service:
