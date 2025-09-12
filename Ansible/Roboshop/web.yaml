@@ -1,0 +1,39 @@
+- name: Configure the frontend 
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install nginx
+      ansible.builtin.apt:
+          name: nginx
+          state: present
+    - name: Start and enable nginx
+      ansible.builtin.service:
+         name: nginx
+         state: started
+         enabled: true
+    - name: remove the default nginx files
+      ansible.builtin.file:
+         path: /usr/share/nginx/html
+         state: absent
+    - name: Add the html directory
+      ansible.builtin.file:
+         path: /usr/share/nginx/html
+         state: directory
+    - name: Download the web artifacts
+      ansible.builtin.get_url:
+         url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+         dest: /tmp/frontend.zip
+    - name: Extract the content
+      ansible.builtin.unarchive:
+         src: /tmp/frontend.zip
+         dest: /usr/share/nginx/html/
+         remote_src: yes
+    - name: Copy the nginx.conf file
+      ansible.builtin.copy:
+         src: nginx.conf
+         dest: /etc/nginx/nginx.conf
+    - name: restart the nginx
+      ansible.builtin.service:
+         name: nginx
+         state: restarted
+
