@@ -72,7 +72,7 @@
         dest: /etc/apt/sources.list.d/mongodb-org-7.0.list
     - name: Update repositories cache and install mongodb-org package
       ansible.builtin.apt:
-        name: mongodb-org-shell
+        name: mongodb-mongosh
         state: present
         update_cache: yes
     - name: Load the catalogue data
