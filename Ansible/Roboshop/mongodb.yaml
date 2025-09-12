@@ -32,11 +32,11 @@
          state: started
          enabled: yes
     - name: Replace bind address in configuration file
-      ansible.builtin.lineinfile:
-        path: /etc/mongod.conf
-        regexp: '^(\s*bindIp:\s*).*'
-        line: '\1 0.0.0.0'
-        backrefs: yes
+      ansible.builtin.replace:
+         path: /etc/mongod.conf
+         regexp: '^(.*bindIP:\s*)127\.0\.0\.0'
+         replace: '\10.0.0.0'
+
     - name: restart the mongod service
       ansible.builtin.service:
          name: mongod
