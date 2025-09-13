@@ -1,0 +1,17 @@
+- name: setup the mysql server
+  hosts: mysql
+  become: yes
+  tasks:
+    - name: Install the mysql server
+      ansible.builtin.apt:
+         name: mysql-server
+         state: present
+    - name: start and enable the service
+      ansible.builtin.service:
+         name: mysql
+         state: started
+         enabled: yes
+    - name: Set MySQL root password
+      ansible.builtin.shell: |
+        mysql -uroot -e "ALTER USER 'root'@'%' IDENTIFIED BY 'RoboShop@1'; FLUSH PRIVILEGES;"
+      become: yes

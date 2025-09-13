@@ -1,0 +1,18 @@
+- name: setup redis server
+  hosts: redis
+  become: yes
+  tasks:
+    - name: Install redis server
+      ansible.builtin.apt: 
+         name: redis
+         state: latest
+    - name: Replace the bindIP for connectivity
+      ansible.builtin.replace:
+        path: /etc/redis/redis.conf
+        regexp: '127\.0\.0\.1'
+        replace: '0.0.0.0'
+    - name: start and enable the redis
+      ansible.builtin.service:
+        name: redis
+        state: started
+        enabled: yes

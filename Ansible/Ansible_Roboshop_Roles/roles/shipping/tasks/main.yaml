@@ -1,0 +1,29 @@
+- name: Install maven
+  ansible.builtin.apt:
+    name: maven
+    state: present
+- name: setup the app dir and extract the files
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_setup
+- name: maven builds
+  ansible.builtin.command: mvn clean package
+  args:
+    chdir: /app
+- name: rename the jar files
+  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+  args:
+    chdir: /app
+- name: Install the mysql client
+  ansible.builtin.apt:
+      name: mysql-client
+      state: present
+- name: load mysql schema
+  ansible.builtin.shell: |
+      mysql -h mysql-server -uroot -pRoboShop@1 < /app/db/schema.sql 
+      mysql -h mysql-server -uroot -pRoboShop@1 < /app/db/master-data.sql
+      mysql -h mysql-server -uroot -pRoboShop@1 < /app/db/app-user.sql 
+- name: setup the systemd file and restart the service
+  ansible.builtin.import_role:
+     name: common
+     tasks_from: systemd-setup
