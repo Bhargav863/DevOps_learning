@@ -7,7 +7,7 @@
     - name: Install Python
       ansible.builtin.apt:
         name: "{{item}}"
-        state: installed
+        state: present
       loop:
        - python36
        - gcc
