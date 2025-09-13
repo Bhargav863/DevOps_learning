@@ -1,0 +1,84 @@
+- name: configure the user component
+  hosts: user
+  vars:
+    user: roboshop
+  become: yes
+  tasks:
+    - name: setup the nodejs repositories
+      ansible.builtin.shell: "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -"
+    - name: Install the nodejs
+      ansible.builtin.apt:
+        name: nodejs
+        state: present
+        update_cache: yes
+    - name: Create the app directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+    - name: check the systemuser is present or not
+      ansible.builtin.command: id {{ user }}
+      register: output
+      ignore_errors: true
+    - name: Create the user if not present
+      ansible.builtin.user:
+         name: "{{ user }}"
+         shell: /sbin/nologin
+         system: true
+         home: /app
+      when: output.rc != 0
+    - name: Download the user files into /tmp directory
+      ansible.builtin.get_url:
+         url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
+         dest: /tmp/user-v3.zip
+    - name: unarchive the user files in /app directory
+      ansible.builtin.unarchive:
+         src: /tmp/user-v3.zip
+         dest: /app
+         remote_src: yes
+    - name: Install dependencies
+      ansible.builtin.command: npm install
+      args:
+        chdir: /app
+    - name: copy user service file to systemd directory
+      ansible.builtin.copy:
+         src: user.service
+         dest: /etc/systemd/system/user.service
+    - name: reload the daemon
+      ansible.builtin.systemd:
+         daemon_reload: true
+    - name: start and enable user
+      ansible.builtin.service:
+        name: user
+        state: started
+        enabled: yes
+    - name: Install gnupg curl
+      ansible.builtin.apt:
+         name: "{{ item.name }}"
+         state: "{{ item.state }}"
+      loop:
+        - { name: 'gnupg', state: 'present' }
+        - { name: 'curl', state: 'present' }
+    - name: Download and install MongoDB public GPG key (if not already present)
+      ansible.builtin.shell: |
+          curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+          gpg --dearmor | sudo tee /usr/share/keyrings/mongodb-server-7.0.gpg > /dev/null
+      args:
+        executable: /bin/bash
+        creates: /usr/share/keyrings/mongodb-server-7.0.gpg
+
+    - name: create the list file
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/apt/sources.list.d/mongodb-org-7.0.list
+    - name: Update repositories cache and install mongodb-org package
+      ansible.builtin.apt:
+        name: mongodb-mongosh
+        state: present
+        update_cache: yes
+    - name: Load the user data
+      ansible.builtin.shell: mongosh --host mongo < /app/db/master-data.js
+    - name: start the user service
+      ansible.builtin.service:
+         name: user
+         state: restarted
+        
