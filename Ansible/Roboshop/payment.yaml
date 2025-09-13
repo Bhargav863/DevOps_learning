@@ -11,7 +11,7 @@
       loop:
        - python3
        - gcc
-       - python3-devel
+       - python3-dev
     - name: Create the app directory
       ansible.builtin.file:
         path: /app
