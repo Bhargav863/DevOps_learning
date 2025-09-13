@@ -1,0 +1,17 @@
+- name: Install Python
+  ansible.builtin.apt:
+    name: "{{item}}"
+    state: present
+  loop:
+    - python3
+    - gcc
+    - python3-dev
+    - python3-pip
+- name: setup the app dir and extract the files
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app_setup
+- name: setup the systemd file and restart the service
+  ansible.builtin.import_role:
+     name: common
+     tasks_from: systemd-setup
