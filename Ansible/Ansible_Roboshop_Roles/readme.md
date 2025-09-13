@@ -33,6 +33,7 @@ roles/
     fooapp/               # ""
 ```
 what are handlers?
+
 Ansible handlers are special tasks that are designed to run only when notified by other tasks within a playbook or role.
 
 ```
