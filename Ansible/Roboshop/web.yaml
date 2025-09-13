@@ -21,11 +21,11 @@
          state: directory
     - name: Download the web artifacts
       ansible.builtin.get_url:
-         url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
-         dest: /tmp/frontend.zip
+         url: https://roboshop-builds.s3.amazonaws.com/web.zip
+         dest: /tmp/web.zip
     - name: Extract the content
       ansible.builtin.unarchive:
-         src: /tmp/frontend.zip
+         src: /tmp/web.zip
          dest: /usr/share/nginx/html/
          remote_src: yes
     - name: Copy the nginx.conf file
