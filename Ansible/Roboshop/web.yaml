@@ -28,10 +28,10 @@
          src: /tmp/web.zip
          dest: /usr/share/nginx/html/
          remote_src: yes
-    - name: Copy the nginx.conf file
+    - name: Copy the roboshop.conf file
       ansible.builtin.copy:
          src: roboshop.conf
-         dest: /etc/nginx/nginx.conf
+         dest: /etc/nginx/sites-available/default
     - name: restart the nginx
       ansible.builtin.service:
          name: nginx
