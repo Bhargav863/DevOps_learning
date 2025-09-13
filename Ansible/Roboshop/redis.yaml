@@ -1,0 +1,9 @@
+- name: setup redis server
+  hosts: redis
+  become: yes
+  tasks:
+    - name: Install redis server
+      ansible.builtin.yum: 
+         name: redis
+         state: latest
+    
