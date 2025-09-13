@@ -28,11 +28,11 @@
       when: output.rc != 0
     - name: Download the cart files into /tmp directory
       ansible.builtin.get_url:
-         url: https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip
-         dest: /tmp/cart-v3.zip
+         url: https://roboshop-builds.s3.amazonaws.com/cart.zip
+         dest: /tmp/cart.zip
     - name: unarchive the cart files in /app directory
       ansible.builtin.unarchive:
-         src: /tmp/cart-v3.zip
+         src: /tmp/cart.zip
          dest: /app
          remote_src: yes
     - name: Install dependencies

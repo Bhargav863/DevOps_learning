@@ -28,11 +28,11 @@
       when: output.rc != 0
     - name: Download the catalogue files into /tmp directory
       ansible.builtin.get_url:
-         url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
-         dest: /tmp/catalogue-v3.zip
+         url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+         dest: /tmp/catalogue.zip
     - name: unarchive the catalogue files in /app directory
       ansible.builtin.unarchive:
-         src: /tmp/catalogue-v3.zip
+         src: /tmp/catalogue.zip
          dest: /app
          remote_src: yes
     - name: Install dependencies
@@ -76,7 +76,7 @@
         state: present
         update_cache: yes
     - name: Load the catalogue data
-      ansible.builtin.shell: mongosh --host mongo < /app/db/master-data.js
+      ansible.builtin.shell: mongosh --host mongo < /app/db/catalogue.js
     - name: start the catalogue service
       ansible.builtin.service:
          name: catalogue

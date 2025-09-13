@@ -28,11 +28,11 @@
       when: output.rc != 0
     - name: Download the user files into /tmp directory
       ansible.builtin.get_url:
-         url: https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip
-         dest: /tmp/user-v3.zip
+         url: https://roboshop-builds.s3.amazonaws.com/user.zip
+         dest: /tmp/user.zip
     - name: unarchive the user files in /app directory
       ansible.builtin.unarchive:
-         src: /tmp/user-v3.zip
+         src: /tmp/user.zip
          dest: /app
          remote_src: yes
     - name: Install dependencies
