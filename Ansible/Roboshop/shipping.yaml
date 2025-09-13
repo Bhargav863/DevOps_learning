@@ -27,7 +27,7 @@
       ansible.builtin.get_url:
          url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
          dest: /tmp/shipping.zip
-    - name: unarchive the catalogue files in /app directory
+    - name: unarchive the shipping files in /app directory
       ansible.builtin.unarchive:
          src: /tmp/shipping.zip
          dest: /app
