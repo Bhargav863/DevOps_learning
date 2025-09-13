@@ -12,11 +12,6 @@
          state: started
          enabled: yes
     - name: Set MySQL root password
-      community.mysql.mysql_user:
-        login_user: root
-        login_password: ""
-        user: root
-        host_all: yes
-        password: "RoboShop@1"
-        check_implicit_admin: yes
-        state: present
+      ansible.builtin.shell: |
+        mysql -uroot -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'RoboShop@1'; FLUSH PRIVILEGES;"
+      become: yes
