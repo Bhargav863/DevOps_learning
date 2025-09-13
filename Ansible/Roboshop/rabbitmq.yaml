@@ -1,0 +1,17 @@
+- name: Install and setup the rabbitmq server
+  hosts: rabbitmq
+  become: yes
+  tasks:
+    - name: Install the rabbitmq
+      ansible.builtin.apt:
+         name: rabbitmq-server
+         state: present
+    - name: start the rabbitmq
+      ansible.builtin.service:
+        name: rabbitmq-server
+        state: restarted
+        enabled: true
+    - name: create the rabbitmq user
+      ansible.builtin.command: rabbitmqctl add_user roboshop roboshop123
+    - name: setup permissions
+      ansible.builtin.shell: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
