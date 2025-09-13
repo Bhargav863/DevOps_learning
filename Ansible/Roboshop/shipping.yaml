@@ -45,7 +45,10 @@
          name: mysql-client
          state: present
     - name: load mysql schema
-      ansible.builtin.shell: mysql -h mysql-server -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+      ansible.builtin.shell: |
+         mysql -h mysql-server -uroot -pRoboShop@1 < /app/db/schema.sql 
+         mysql -h mysql-server -uroot -pRoboShop@1 < /app/db/master-data.sql
+         mysql -h mysql-server -uroot -pRoboShop@1 < /app/db/app-user.sql 
     - name: copy the shipping service file
       ansible.builtin.copy:
         src: shipping.service
