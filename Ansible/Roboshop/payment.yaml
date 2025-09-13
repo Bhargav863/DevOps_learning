@@ -1,13 +1,13 @@
 - name: configure the catalogue component
-  hosts: catalogue
+  hosts: payment
   vars:
     user: roboshop
   become: yes
   tasks:
     - name: Install Python
       ansible.builtin.apt:
-      name: "{{item}}"
-      state: installed
+        name: "{{item}}"
+        state: installed
       loop:
        - python36
        - gcc
