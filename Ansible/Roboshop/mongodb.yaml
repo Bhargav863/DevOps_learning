@@ -1,5 +1,5 @@
 - name: Configure the Mongodb server
-  hosts: dev
+  hosts: mongodb
   become: true
   tasks:
     - name: Install gnupg curl
