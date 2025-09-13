@@ -31,7 +31,24 @@ roles/
     webtier/              # same kind of structure as "common" was above, done for the webtier role
     monitoring/           # ""
     fooapp/               # ""
-    ```
+```
 what are handlers?
 Ansible handlers are special tasks that are designed to run only when notified by other tasks within a playbook or role.
+
+```
+- name: Configure Nginx
+  hosts: webservers
+  tasks:
+    - name: Ensure Nginx configuration file is present
+      ansible.builtin.template:
+        src: nginx.conf.j2
+        dest: /etc/nginx/nginx.conf
+      notify: Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+```
 
