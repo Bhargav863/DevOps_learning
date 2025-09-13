@@ -1,0 +1,19 @@
+- name: Install gnupg curl
+  ansible.builtin.apt:
+     name: "{{ item.name }}"
+     state: present
+  loop:
+    - gnupg
+    - curl
+- name: Download and install MongoDB public GPG key (if not already present)
+  ansible.builtin.shell: |
+    curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+    gpg --dearmor | sudo tee /usr/share/keyrings/mongodb-server-7.0.gpg > /dev/null
+  args:
+    executable: /bin/bash
+    creates: /usr/share/keyrings/mongodb-server-7.0.gpg
+
+- name: create the list file
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/apt/sources.list.d/mongodb-org-7.0.list

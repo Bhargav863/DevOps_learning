@@ -1,0 +1,7 @@
+- name: setup the nodejs repositories
+      ansible.builtin.shell: "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -"
+- name: Install the nodejs
+  ansible.builtin.apt:
+    name: nodejs
+    state: present
+    update_cache: yes
