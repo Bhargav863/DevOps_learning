@@ -1,0 +1,5 @@
+CATALOGUE_HOST: catalogue
+USER_HOST: user
+SHIPPING_HOST: shipping
+CART_HOST: cart
+PAYMENT_HOST: payment
