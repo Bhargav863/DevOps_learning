@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: Install redis server
-      ansible.builtin.yum: 
+      ansible.builtin.apt: 
          name: redis
          state: latest
     
