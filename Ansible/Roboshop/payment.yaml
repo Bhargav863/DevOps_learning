@@ -1,0 +1,50 @@
+- name: configure the catalogue component
+  hosts: catalogue
+  vars:
+    user: roboshop
+  become: yes
+  tasks:
+    - name: Install Python
+      ansible.builtin.apt:
+      name: "{{item}}"
+      state: installed
+      loop:
+       - python36
+       - gcc
+       - python3-devel
+    - name: Create the app directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+    - name: check the systemuser is present or not
+      ansible.builtin.command: id {{ user }}
+      register: output
+      ignore_errors: true
+    - name: Create the user if not present
+      ansible.builtin.user:
+         name: "{{ user }}"
+         shell: /sbin/nologin
+         system: true
+         home: /app
+      when: output.rc != 0
+    - name: Download payment and extract
+      ansible.builtin.unarchive:
+        src: https://roboshop-builds.s3.amazonaws.com/payment.zip
+        dest: /app
+        remote_src: yes
+    - name: Install dependencies
+      ansible.builtin.command: pip3.6 install -r requirements.txt
+      args:
+        chdir: /app
+    - name: copy payment service file to systemd directory
+      ansible.builtin.copy:
+         src: payment.service
+         dest: /etc/systemd/system/payment.service
+    - name: reload the daemon
+      ansible.builtin.systemd:
+         daemon_reload: true
+    - name: start and enable payment
+      ansible.builtin.service:
+        name: payment
+        state: restarted
+        enabled: yes
