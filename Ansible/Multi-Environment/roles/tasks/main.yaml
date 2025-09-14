@@ -1,0 +1,3 @@
+- name: Print the server name
+  ansible.builtin.debug:
+     msg: This is {{NAME}}
