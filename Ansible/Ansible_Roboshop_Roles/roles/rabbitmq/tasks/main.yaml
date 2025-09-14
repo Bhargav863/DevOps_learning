@@ -7,7 +7,11 @@
     name: rabbitmq-server
     state: restarted
     enabled: true
+- name: Check if RabbitMQ user 'roboshop' exists
+  ansible.builtin.command: rabbitmqctl list_users
+  register: rabbitmq_users
 - name: create the rabbitmq user
   ansible.builtin.command: rabbitmqctl add_user roboshop roboshop123
+  when: "'roboshop' not in rabbitmq_users.stdout"
 - name: setup permissions
   ansible.builtin.shell: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
