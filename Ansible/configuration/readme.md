@@ -24,4 +24,18 @@ become_user = root
 become_ask_pass = false
 ```
 
+* ansible.cfg as a environment variable
+```
+export ANSIBLE_CONFIG=/home/ansible/DevOps_learning/Ansible/ansible.cfg
+```
+```
+ansible-playbook configuration/demo.yaml
+```
+* keep the ansible.cfg inside the current working directory and check.
+  ```
+  ansible-playbook demo.yaml
+  ```
+
+
+
 
