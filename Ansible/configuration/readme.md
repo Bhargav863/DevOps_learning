@@ -32,10 +32,23 @@ export ANSIBLE_CONFIG=/home/ansible/DevOps_learning/Ansible/ansible.cfg
 ansible-playbook configuration/demo.yaml
 ```
 * keep the ansible.cfg inside the current working directory and check.
-  ```
-  ansible-playbook demo.yaml
-  ```
+```
+ansible-playbook demo.yaml
+```
+* check which configuration file is ansible taking by running below command.
+```
+ansible --version
+```
 
+```
+ansible@Redis-node1:~/DevOps_learning/Ansible$ ansible --version
+ansible 2.10.8
+config file = /home/ansible/DevOps_learning/Ansible/ansible.cfg
+configured module search path = ['/home/ansible/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+ansible python module location = /usr/lib/python3/dist-packages/ansible
+executable location = /usr/bin/ansible
+python version = 3.10.12 (main, May 27 2025, 17:12:29) [GCC 11.4.0]
+```
 
 
 
