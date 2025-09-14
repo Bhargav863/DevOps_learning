@@ -19,6 +19,6 @@
 
   - name: split
     debug:
-      msg: "{{ Greeting |  split(',') }}"
+      msg: "{{ Greeting |  regex_Upsplit(',') }}"
 
  
