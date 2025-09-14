@@ -1,6 +1,6 @@
 - name: Install gnupg curl
   ansible.builtin.apt:
-     name: "{{ item.name }}"
+     name: "{{ item }}"
      state: present
   loop:
     - gnupg
