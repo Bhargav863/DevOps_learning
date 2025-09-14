@@ -1,0 +1,117 @@
+- name: configure the catalogue component
+  hosts: catalogue
+  vars:
+    user: roboshop
+  become: yes
+  tasks:
+    - name: setup the nodejs repositories
+      ansible.builtin.shell: "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -"
+      tags:
+        - installation
+    - name: Install the nodejs
+      ansible.builtin.apt:
+        name: nodejs
+        state: present
+        update_cache: yes
+      tags:
+       - installation
+    - name: Create the app directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+      tags:
+        - deployment
+    - name: check the systemuser is present or not
+      ansible.builtin.command: id {{ user }}
+      register: output
+      ignore_errors: true
+      tags:
+        - user
+    - name: Create the user if not present
+      ansible.builtin.user:
+         name: "{{ user }}"
+         shell: /sbin/nologin
+         system: true
+         home: /app
+      tags:
+        - user
+      when: output.rc != 0
+    - name: Download the catalogue files into /tmp directory
+      ansible.builtin.get_url:
+         url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+         dest: /tmp/catalogue.zip
+      tags:
+        - deployment
+    - name: unarchive the catalogue files in /app directory
+      ansible.builtin.unarchive:
+         src: /tmp/catalogue.zip
+         dest: /app
+         remote_src: yes
+      tags:
+       - deployment
+    - name: Install dependencies
+      ansible.builtin.command: npm install
+      args:
+        chdir: /app
+      tags:
+       - deployment
+    - name: copy catalogue service file to systemd directory
+      ansible.builtin.copy:
+         src: catalogue.service
+         dest: /etc/systemd/system/catalogue.service
+      tags: 
+        - system-setup
+    - name: reload the daemon
+      ansible.builtin.systemd:
+         daemon_reload: true
+      tags:
+        - system-setup
+    - name: start and enable catalogue
+      ansible.builtin.service:
+        name: catalogue
+        state: started
+        enabled: yes
+      tags:
+        - system-setup
+    - name: Install gnupg curl
+      ansible.builtin.apt:
+         name: "{{ item.name }}"
+         state: "{{ item.state }}"
+      loop:
+        - { name: 'gnupg', state: 'present' }
+        - { name: 'curl', state: 'present' }
+      tags:
+        - installation
+    - name: Download and install MongoDB public GPG key (if not already present)
+      ansible.builtin.shell: |
+          curl -fsSL https://www.mongodb.org/static/pgp/server-7.0.asc | \
+          gpg --dearmor | sudo tee /usr/share/keyrings/mongodb-server-7.0.gpg > /dev/null
+      args:
+        executable: /bin/bash
+        creates: /usr/share/keyrings/mongodb-server-7.0.gpg
+      tags:
+        - installation
+    - name: create the list file
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/apt/sources.list.d/mongodb-org-7.0.list
+      tags:
+        - installation
+    - name: Update repositories cache and install mongodb-org package
+      ansible.builtin.apt:
+        name: mongodb-mongosh
+        state: present
+        update_cache: yes
+      tags:
+        - installation
+    - name: Load the catalogue data
+      ansible.builtin.shell: mongosh --host mongo < /app/schema/catalogue.js
+      tags:
+      - installation
+    - name: start the catalogue service
+      ansible.builtin.service:
+         name: catalogue
+         state: restarted
+      tags:
+        - deployment  
+        
