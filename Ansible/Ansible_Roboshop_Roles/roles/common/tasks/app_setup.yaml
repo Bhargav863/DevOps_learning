@@ -15,8 +15,8 @@
   when: output.rc != 0
 - name: Download the {{ component }} files into /tmp directory
   ansible.builtin.get_url:
-  url: https://roboshop-builds.s3.amazonaws.com/{{ component }}.zip
-  dest: /tmp/{{ component }}.zip
+    url: https://roboshop-builds.s3.amazonaws.com/{{ component }}.zip
+    dest: /tmp/{{ component }}.zip
 - name: unarchive the {{ component }} files in /app directory
   ansible.builtin.unarchive:
     src: /tmp/{{ component }}.zip
