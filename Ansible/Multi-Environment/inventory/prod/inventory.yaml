@@ -1,0 +1,4 @@
+[catalogue]
+52.146.16.86
+[catalogue:vars]
+NAME: "Prod server"
