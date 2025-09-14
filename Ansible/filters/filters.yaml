@@ -1,0 +1,24 @@
+- name: DEMO on filters
+  hosts: localhost
+  vars:
+    NAME: Bhargav
+    website: https://www.devops.com/batch-7
+    Greeting: Hello Bhargav, How are you
+  tasks:
+  - name: convert into upper case
+    debug:
+      msg: "Hello {{ NAME | upper }}"
+
+  - name: convert into lower case
+    debug:
+      msg: "{{ COURSE | default('DevOps') }}"
+
+  - name: extract hostname
+    debug:
+      msg: "{{ website | urlsplit('hostname') }}"
+
+  - name: split
+    debug:
+      msg: "{{ Greeting |  split(',') }}"
+
+ 
