@@ -39,6 +39,7 @@ Below is the environment setup.
 * Terraform
 * AWS account
 * AWS CLI V2
+
 ![alt text](terraform.jpg)
 
 **steps:**
