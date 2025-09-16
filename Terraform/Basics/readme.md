@@ -82,6 +82,24 @@ provider "aws" {
     }
     }
     ```
+8) With the above terraform code, i am able to create the EC2 instance. For login to that server i need to go to the aws console and take the public IP. Instead of that i want to print the public IP and private IP on the terminal as a output after my EC2 instance is created. For that we can use output.tf file to print the public once the ec2 is created.
+ 
+    **outputs**
+    * Outputs in Terraform are values that you export from your configuration after resources are created.
+    * They’re super useful when you want to see important details (like instance IPs, bucket names, VPC IDs) after terraform apply.
+    * They can also be used to pass values between modules.
+9) create an output.tf file to print the public and private IP.
+   ```
+   output "public_ip" {
+    value = aws_instance.my_ec2.public_ip
+    }
+
+   output "private_ip" {
+    value = aws_instance.my_ec2.private_ip
+    }
+   ```
+
+
 
 
 
