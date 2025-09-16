@@ -55,12 +55,12 @@ provider "aws" {
    ```
 5) With this, my ec2-instance is creating without name. And also i want to organize the EC2 instances according to their environment and some other factors. For this purpose we can use tags.
 
-**tags:** <br />
-In Terraform, tags are just key-value pairs that you can attach to AWS resources (like EC2, S3, VPCs, etc.) to organize, identify, and manage them.
+    **tags:** <br />
+    In Terraform, tags are just key-value pairs that you can attach to AWS resources (like EC2, S3, VPCs, etc.) to organize, identify, and manage them.
 
-**Cost tracking** – You can filter AWS billing reports by tags like Project, Environment, or Team.
+    **Cost tracking** – You can filter AWS billing reports by tags like Project, Environment, or Team.
 
-**Automation** – Many AWS services (like backup, monitoring, auto-scaling) can filter/select resources by tags.
+    **Automation** – Many AWS services (like backup, monitoring, auto-scaling) can filter/select resources by tags.
 
 6) Add tags to your ec2.tf file for better identification.
    ```
@@ -72,7 +72,16 @@ In Terraform, tags are just key-value pairs that you can attach to AWS resources
     }
    ```
 7) Instead of hardcoding values we can use maps in variables to define tags.
-   
+   ```
+   variable "tags" {
+    type = map(any)
+    default = {
+        Name      = "Terraform-ec2"
+        ENV       = "dev"
+        Terraform = "true" # specifying created by terraform code
+    }
+    }
+    ```
 
 
 
