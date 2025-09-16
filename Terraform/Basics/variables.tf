@@ -21,3 +21,12 @@ variable "sg_cidr" {
   type    = list(any)
   default = ["0.0.0.0/0"]
 }
+
+variable "tags" {
+  type = map(any)
+  default = {
+    Name      = "Terraform-ec2"
+    ENV       = "dev"
+    Terraform = "true" # specifying created by terraform code
+  }
+}
