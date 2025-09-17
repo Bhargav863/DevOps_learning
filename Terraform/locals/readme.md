@@ -14,3 +14,5 @@ locals {
   * you can combine variables with locals for best results.
 
 **NOTE:** We should not over utilise locals, it should be used to avoid repeating the same values or expressions multiple times in a configuration.
+
+refer to local.tf for better understanding
