@@ -31,6 +31,6 @@ In dynamic block, the block label itself becomes the implicit iterator.
 Terraform automatically creates a temporary object named exactly as the block label for each iteration.
 
 so here :
-for_each = var.ingress --> iterates over your list or map of ingress rules.
-ingress (the block label) → becomes the iterator object.
-ingress.value → is the current item in the iteration.
+* for_each = var.ingress --> iterates over your list or map of ingress rules.
+* ingress (the block label) → becomes the iterator object.
+* ingress.value → is the current item in the iteration.
