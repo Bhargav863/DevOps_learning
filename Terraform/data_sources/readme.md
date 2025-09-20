@@ -30,3 +30,20 @@ data.aws_ami.amazonlinux2.id
 
 ### Example 1:
 
+As you know AMI-ID is different for different region and it may change frequently. So we can use data sources to fetch the data dynamically from terraform.
+
+Fetch the latest Ubuntu AMI instead of hardcoding an AMI ID
+
+```
+data "aws_ami" "ami_id" {
+  most_recent = true
+  owners      = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-kernel-5.10-hvm-*"]
+  }
+}
+```
+
+**Note**: Datasources are used to query the information from the provider.
