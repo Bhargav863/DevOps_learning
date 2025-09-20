@@ -1,7 +1,7 @@
 resource "aws_security_group" "roboshop" {
   name        = "roboshop"
   description = "Allow HTTP,HTTPS and SSH Ports"
-
+  vpc_id      = var.vpc_id
   dynamic "ingress" {
     for_each = var.ingress # here you will get a variable named ingress to iterate over the list
     content {

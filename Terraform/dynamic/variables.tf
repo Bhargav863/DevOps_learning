@@ -24,3 +24,8 @@ variable "ingress" {
     }
   ]
 }
+
+variable "vpc_id" {
+  type    = string
+  default = "vpc-0fa0f667d924888bd"
+}
