@@ -15,9 +15,9 @@ resource "aws_instance" "my_ec2" {
 resource "aws_dynamodb_table" "terraform-lock" {
   name         = "terraform-lock"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "LOCK ID"
+  hash_key     = "LockID"
   attribute {
-    name = "LOCK ID"
+    name = "LockID"
     type = "S"
   }
   tags = {

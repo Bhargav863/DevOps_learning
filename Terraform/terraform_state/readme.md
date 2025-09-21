@@ -61,3 +61,8 @@ resource "aws_dynamodb_table" "terraform-lock" {
   ```
   dynamodb_table = "table-name"
   ```
+* Reconfigure by running below command.
+  ```
+  terraform init -reconfigure
+  ```
+* Delete the EC2 instance by commenting DynamoDB table code and observer terraform acquiring state lock. 
