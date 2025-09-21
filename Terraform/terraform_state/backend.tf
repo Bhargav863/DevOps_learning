@@ -1,0 +1,9 @@
+terraform {
+  backend "s3" {
+    bucket         = "terraform-mini"
+    key            = "remote_backend"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "terraform-lock"
+  }
+}
