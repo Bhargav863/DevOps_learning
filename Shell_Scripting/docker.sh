@@ -59,8 +59,8 @@ systemctl enable docker &>>$LOGFILE
 
 validate $? "Docker Enabled"
 
-usermod -aG docker ubuntu &>>$LOGFILE
+usermod -aG docker $USER &>>$LOGFILE
 
-validate $? "ubuntu user added to docker group"
+validate $? "ubuntu $USER added to docker group"
 
 echo -e "$R Please logout and login again $N"
