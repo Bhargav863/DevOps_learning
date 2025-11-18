@@ -56,3 +56,5 @@ data:
   CART_PORT: "8080"
   USER_HOST: "user"
   USER_PORT: "8080"
+  RABBITMQ_DEFAULT_USER: "roboshop"
+  RABBITMQ_DEFAULT_PASS: "roboshop123"
