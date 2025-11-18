@@ -62,6 +62,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: mysql-secret
+  namespace: roboshop
 type: Opaque
 data:
   MYSQL_USER: c2hpcHBpbmcK # base 64 for username
