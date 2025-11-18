@@ -52,9 +52,8 @@ metadata:
   name: payment-config
   namespace: roboshop
 data:
-  CART_HOST: catalogue
+  CART_HOST: "cart"
   CART_PORT: "8080"
   USER_HOST: "user"
   USER_PORT: "8080"
-  RABBITMQ_DEFAULT_USER: "roboshop"
-  RABBITMQ_DEFAULT_PASS: "roboshop123"
+  
